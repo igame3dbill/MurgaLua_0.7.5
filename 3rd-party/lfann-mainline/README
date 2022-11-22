@@ -1,0 +1,25 @@
+* Info
+
+lfann is a FANN 2.1 binding to Lua. It tries to follow Lua conventions, such
+as counting from 1 (both neurons and layers have an offset of 1).
+It also implements some new functions (isolated in the files extension.{c,h}).
+
+* Install
+
+- Dependencies:
+
+-> FANN 2.1 with development files;
+-> Lua 5.1.x, with development files;
+
+Edit the Makefile to suit your needs, and run
+$ make [AMD64=1 | DEBUG=1]
+# make install [DESTDIR=forpackages]
+
+* How to use
+
+Its very similar to the C API, see /examples and /tests.
+
+* Contact
+
+Lucas Hermann Negri - <lucashnegri@gmail.com>
+http://oproj.tuxfamily.org

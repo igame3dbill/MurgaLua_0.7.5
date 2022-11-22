@@ -1,0 +1,11 @@
+
+Create a dropdown menu showing the selection in the main frame
+
+fltk:Fl_Choice(x_position,y_position,width,height,"label")
+
+As with Fl_Menu, items are inserted with the "add" method
+
+Keyboard control:
+When menu is selected, press spacebar to open the menu.
+Use arrows to navigate.
+Press Enter to select an item, or Escape to cancel.

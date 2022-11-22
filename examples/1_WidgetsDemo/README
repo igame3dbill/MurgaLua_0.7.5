@@ -1,0 +1,80 @@
+
+Beta 4
+
+This program demonstrates various features of MurgaLua, with
+a focus on FLTK widgets (knobs, buttons, etc).
+
+These are mostly very simple examples, and in no way show every
+method of creating usable murgaLua scripts. 
+
+The Lua manual was included to provide more detailed documentation.
+The FLTK manual wasn't included, since it's provided with MurgaLua.
+
+This program requires at least MurgaLua version 0.6.0
+Some features will not work without versions newer than 0.6.0
+
+If the ext_editor variable is set, the "external editor" button will
+open the displayed code (as a temp file) into your specified editor.
+After the editor closes, the temp file will be reloaded into the 
+code display window. This is a temporary modification that can be
+previewed with the "show demo" button, but only as long as you do
+not select a new demo from the list. The code buffer must be saved
+to a file if you want to keep your changes.
+
+KEYBOARD CONTROL
+
+Alt+I : Info tab
+Alt+S : Source tab
+Alt+D : Documentation tab
+Alt+O : Options tab
+Alt+L : Focus the file list
+Up/Dn : Navigate the file list when it's focused
+Enter : Show selected demo or toggle selected header
+Alt+R : Show readme and source code for main script
+Alt+M : Show Lua manual
+Alt+C : Show code snippets
+Alt+W : Show "What's New" page
+Alt+E : Edit current code buffer in external editor
+Alt+A : Save current code buffer
+Alt+[1-4] : Jump to numbered file list header
+
+All controls should work regardless of what tab has focus, except
+those buttons that are visible only when the source tab is focused.
+When tabs are selected via keyboard, the text field gets focus.
+
+
+CREDITS
+
+The following people have generously provided code samples,
+feedback, help, and inspiration for this project.
+
+John Murga
+Robert Shingledecker (roberts)
+William Griffin (iGame3D)
+Marielle Lange (widged)
+^thehatsrule^
+Juergen
+Christian (chrimo)
+
+
+LICENSE
+
+This is free software, provided for non-profit educational
+purposes, with no guarantee of usefulness.
+
+demos.lua 2007-2008 by mikshaw, distributed under
+Creative Commons Attribution-NonCommercial-ShareAlike license:
+http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+All images were created by mikshaw
+and are redistributable, unaltered, under the
+Creative Commons Attribution-NonCommercial-NoDerivs license:
+http://creativecommons.org/licenses/by-nc-nd/3.0/
+
+Copyrights of individual code samples are held by their
+respective authors and are used here with express consent.
+
+Code samples that were written by mikshaw are released to the
+public without copyright, to be used in any way you like, with
+the exception of any embedded images.
+

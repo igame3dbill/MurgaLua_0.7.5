@@ -1,0 +1,32 @@
+
+This demo shows a wide range of possible label alignments.
+
+widget:align(integer)
+widget:align(fltk.FL_ALIGN_*)
+
+Enumerations:
+fltk.FL_ALIGN_CENTER  0
+fltk.FL_ALIGN_TOP  1
+fltk.FL_ALIGN_BOTTOM  2
+fltk.FL_ALIGN_LEFT  4
+fltk.FL_ALIGN_TOP_LEFT  5
+fltk.FL_ALIGN_BOTTOM_LEFT  6
+fltk.FL_ALIGN_RIGHT  8
+fltk.FL_ALIGN_TOP_RIGHT  9
+fltk.FL_ALIGN_BOTTOM_RIGHT  10
+fltk.FL_ALIGN_INSIDE  16
+fltk.FL_ALIGN_TEXT_OVER_IMAGE  32
+fltk.FL_ALIGN_CLIP  64
+fltk.FL_ALIGN_WRAP  128
+
+There are many more options available than those allowed with
+the use of constants. In the C++ usage of FLTK, the additional
+alignments can be done by mixing the constants together, but
+I have not succeeded in doing this with murgaLua.
+
+I don't know if there may be redundant alignments within the
+integers listed, or if all alignments are available within this
+range, but it did not seem important enough to verify this. I do
+know that I went as far as 192 before finding a combination of
+wrap and clip, so I thought 256 was a pretty safe range.
+

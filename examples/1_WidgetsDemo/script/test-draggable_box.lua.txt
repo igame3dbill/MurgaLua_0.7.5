@@ -1,0 +1,13 @@
+
+This is a simple experiment with dragging objects.
+So far I'm not satisfied with it. It's very easy to drag a
+given widget if that's the only widget you want dragged and
+you don't mind grabbing it whenever you drag anywhere, but
+I doubt that behaviour is ever the desired one.
+
+Trying to determine if you are over the desired widget before
+it moves is difficult, as the loop doesn't keep up with the
+position of the cursor. When using Fl:event_inside() as a test
+you must move the mouse slowly to keep from dropping the object.
+
+This is just one of many things I have yet to learn =o)

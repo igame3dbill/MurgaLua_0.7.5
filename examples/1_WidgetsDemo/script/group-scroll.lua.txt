@@ -1,0 +1,11 @@
+
+This example written by John Murga
+Posted to the murgaLua message board July 2007
+
+Depending on the context of the scroll (whether or not
+there are adjacent groups in the script) a scroll or a
+pack may not require Fl_End() or widget:add(), although
+it is generally a good idea for the sake of consistency
+and to avoid possible future trouble. For example, this
+script might work on its own without Fl_End(), but fails
+if made the child of a parent window.

@@ -1,0 +1,12 @@
+--- fluid/nppBackup/Fl_Function_Type.cxx.2008-08-25_130629.bak	Fri Jan  4 23:18:40 2008
++++ fluid/Fl_Function_Type.cxx	Mon Aug 25 13:06:29 2008
+@@ -114,7 +114,8 @@
+ }
+ 
+ const char *c_check(const char *c, int type) {
+-  return _c_check(c,type);
++  return 0;//Hack by Tobias Opfermann, disables Fluid syntax analysis to enable use of other languages in the code blocks.
++  //return _c_check(c,type);
+ }
+ 
+ ////////////////////////////////////////////////////////////////

@@ -1,0 +1,38 @@
+diff -ruN ../Makefile Makefile
+--- Makefile	Tue Apr  7 18:03:28 2009
++++ Makefile	Tue Apr  7 18:03:28 2009
+@@ -9,7 +9,7 @@
+ 
+ # Where to install. The installation starts in the src and doc directories,
+ # so take care if INSTALL_TOP is not an absolute path.
+-INSTALL_TOP= /usr/local
++INSTALL_TOP?= /usr/local
+ INSTALL_BIN= $(INSTALL_TOP)/bin
+ INSTALL_INC= $(INSTALL_TOP)/include
+ INSTALL_LIB= $(INSTALL_TOP)/lib
+@@ -22,18 +22,18 @@
+ 
+ # How to install. If your install program does not support "-p", then you
+ # may have to run ranlib on the installed liblua.a (do "make ranlib").
+-INSTALL= install -p
+-INSTALL_EXEC= $(INSTALL) -m 0755
+-INSTALL_DATA= $(INSTALL) -m 0644
++#INSTALL= install -p
++#INSTALL_EXEC= $(INSTALL) -m 0755
++#INSTALL_DATA= $(INSTALL) -m 0644
+ #
+ # If you don't have install you can use cp instead.
+-# INSTALL= cp -p
+-# INSTALL_EXEC= $(INSTALL)
+-# INSTALL_DATA= $(INSTALL)
++INSTALL= cp -p
++INSTALL_EXEC= $(INSTALL)
++INSTALL_DATA= $(INSTALL)
+ 
+ # Utilities.
+ MKDIR= mkdir -p
+-RANLIB= ranlib
++RANLIB?= ranlib
+ 
+ # == END OF USER SETTINGS. NO NEED TO CHANGE ANYTHING BELOW THIS LINE =========
+ 

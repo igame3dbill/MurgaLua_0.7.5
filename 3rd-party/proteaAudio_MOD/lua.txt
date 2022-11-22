@@ -1,0 +1,115 @@
+/** \page proteaAudioLua proteaAudio Lua API
+
+
+
+\section intro Overview
+<a href="http://www.lua.org">Lua</a> is a lightweight yet powerful dynamic language. proteaAudio contains almost complete Lua bindings that widely correspond to the <a href="annotated.html">C++ API</a>. By default, the proteaAudio Lua bindings are compiled to a dynamic library based on the RtAudio backend which is imported via the following statement:
+
+<pre>require("proAudioRt")</pre>
+
+All API calls are collected in the global table proAudio. Therefore, proteaAudio is initialized (using the default parameters) by the following call:
+
+<pre>proAudio.create()</pre>
+
+After that the individual methods and functions may be called analogous to the C++ interface of class DeviceAudio. For further detail information, please refer to its documentation or have a look at the following minimal example:
+
+
+
+\section functions Functions
+
+<pre>proAudio.loaderAvailable ( suffix )</pre>
+returns true in case a loader for this file type is available
+
+<pre>proAudio.sampleDestroy ( sample )</pre>
+deletes a previously created sound sample resource identified by its handle
+
+<pre>proAudio.sampleFromFile (  filename, volume = 1.0 )</pre>
+loads a sound sample from file, optionally adjusts volume, returns handle
+
+<pre>proAudio.sampleFromMemory 	( data, sampleRate )</pre>
+converts an array of numeric data into a sound sample having the defined sample rate, returns handle
+
+<pre>proAudio.soundActive ( )</pre> 
+returns number of currently active sounds
+
+<pre>proAudio.soundLoop ( sample, volumeL = 1.0, volumeR = 1.0, disparity = 0.0, pitch = 1.0 )</pre>
+plays a specified sound sample continuously and sets its parameters
+
+Parameters:
+-    	sample 	handle of a previously loaded sample
+-    	volumeL 	(optional) left volume
+-    	volumeR 	(optional) right volume
+-    	disparity 	(optional) time difference between left and right channel in seconds. Use negative values to specify a delay for the left channel, positive for the right.
+-    	pitch 	(optional) pitch factor for playback. 0.5 corresponds to one octave below, 2.0 to one above the original sample.
+
+Returns:
+    a handle to the currently played sound or -1 in case of error 
+
+<pre>proAudio.soundPlay ( sample, volumeL = 1.0, volumeR = 1.0, disparity = 0.0, pitch = 1.0 )</pre>
+plays a specified sound sample once and sets its parameters
+
+Parameters:
+-    	sample 	handle of a previously loaded sample
+-    	volumeL 	(optional) left volume
+-    	volumeR 	(optional) right volume
+-    	disparity 	(optional) time difference between left and right channel in seconds. Use negative values to specify a delay for the left channel, positive for the right.
+-    	pitch 	(optional) pitch factor for playback. 0.5 corresponds to one octave below, 2.0 to one above the original sample.
+
+Returns:
+    a handle to the currently played sound or -1 in case of error 
+
+<pre>proAudio.soundStop 	(  [ sound ] ) </pre>
+stops a specified sound immediately, if a sound handle is passed, or stops all sounds
+
+<pre>proAudio.soundUpdate ( sound, volumeL, volumeR, disparity = 0.0, pitch = 1.0 )</pre>
+updates parameters of a specified sound
+
+Parameters:
+-    	sound 	handle of a currently active sound
+-    	volumeL 	left volume
+-    	volumeR 	right volume
+-    	disparity 	(optional) time difference between left and right channel in seconds. Use negative values to specify a delay for the left channel, positive for the right.
+-    	pitch 	(optional) pitch factor for playback. 0.5 corresponds to one octave below, 2.0 to one above the original sample.
+
+Returns:
+    true in case the parameters have been updated successfully 
+
+<pre>proAudio.volume 	(  left, [ right ] )</pre>
+sets master volume, either for both channels uniformly, or individually
+
+
+
+\section example1 Example
+
+<pre>
+-- create an audio device using default parameters or exit in case of errors
+require("proAudioRt")
+if not proAudio.create() then os.exit(1) end
+
+-- load and play a sample:
+sample = proAudio.sampleFromFile("sample.ogg")
+if sample then proAudio.soundPlay(sample) end
+
+-- wait until the sound has finished:
+--   for the sake of simplicity busy waiting instead of a preferable sleep
+while proAudio.soundActive()>0 do end
+
+-- cleanup and exit
+proAudio.destroy()
+os.exit(0)
+</pre>
+
+\section dynSamples Dynamic creation of audio samples
+
+There is no equivalent to the C++ AudioSample class in the proteaAudio Lua API. However, mono audio samples may be dynamically created by the following call:
+
+<pre>proAudio.sampleFromMemory(data, sampleRate)</pre>
+
+The <em>data</em> parameter has to be a table reference containing an array of numeric PCM data ranging from -1.0 to +1.0. The <em>sampleRate</em> parameter defines the number of samples per second. Typical sample rates are 22050 or 44100.
+
+\section limitations Limitations
+
+- The proteaAudio Lua API currently has no equivalent to the C++ API's DeviceAudio::loaderRegister()  method.
+- no bindings to the SDL backend yet
+
+*/

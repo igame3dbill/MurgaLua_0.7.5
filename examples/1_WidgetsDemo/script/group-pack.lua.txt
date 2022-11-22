@@ -1,0 +1,22 @@
+
+my_pack=fltk.Fl_Pack(x,y,width,height) -- create the pack
+my_pack:type(fltk.FL_HORIZONTAL) -- if you want a horizonal pack
+fltk:Fl_End() -- required to end the pack group
+my_pack:add(widget) -- add a widget to the pack
+
+Fl_Pack is a special class of Fl_Group that allows widgets
+to be neatly lined up within it. It dynamically expands
+vertically (or horizontally if type is FL_HORIZONTAL)
+as more widgets are added. This behavior allows the
+contained widgets to be created without specifying
+their x and y positions, and the pack itself to be
+created without specifying its height (or width if
+type is FL_HORIZONTAL).
+
+Fl_Pack works well when placed within Fl_Scroll,
+as seen in the fonts-system.lua example. This allows
+an arbitrary number of widgets to be added to the
+group while keeping the group itself a limited size.
+When doing this it is a good idea to make the width
+of Fl_Scroll slightly larger than the pack width to
+allow room for the scrollbar.

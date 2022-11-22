@@ -1,0 +1,12 @@
+
+A demo of different ways to draw your widget's label.
+
+Some of the label types must be defined
+before they can be used:
+fltk.fl_define_FL_SHADOW_LABEL()
+fltk.fl_define_FL_EMBOSSED_LABEL()
+fltk.fl_define_FL_ENGRAVED_LABEL()
+
+Note that this demo includes some labels that are blank
+(other than just FL_NO_LABEL). This is frankly because I have
+no idea how they are used =o)

@@ -1,0 +1,56 @@
+
+Fl_Tabs is a subset of Fl_Group that holds multiple panes in the same
+space, and is navigated by clicking on tabs like the ones above.
+Only one tab in a group can be active at any given time.
+The Fl_Tabs group is a container (parent) for other groups.
+
+The height and position of tabs is determined by the height and
+position of the child group in relation to its Fl_Tabs parent.
+The position is determined by whichever end (top or bottom) has
+more free space between the edge of the child and the edge of
+its parent. The larger space gets the tabs, and the tab height
+is the height of that space.
+
+As an example, create a group 100x200 with 20px tabs on bottom:
+
+my_tab_group=fltk:Fl_Tabs(10,30,100,200)
+fltk:Fl_End() -- all groups should be closed
+-- group is 200px high, so you must subtract 20
+-- place it at the same y coordinate to force the tabs to the bottom
+my_first_tab=fltk:Fl_Group(10,30,100,180,"one")
+fltk:Fl_End()
+my_second_tab=fltk:Fl_Group(10,30,100,180,"two")
+fltk:Fl_End()
+-- add the tabs to the group
+my_tab_group:add(my_first_tab)
+my_tab_group:add(my_second_tab)
+
+The same could be written this way:
+
+my_tab_group=fltk:Fl_Tabs(10,30,100,200)
+my_first_tab=fltk:Fl_Group(10,30,100,180,"one")
+<contents of tab one>
+fltk:Fl_End() -- end of tab one
+my_second_tab=fltk:Fl_Group(10,30,100,180,"two")
+<contents of tab two>
+fltk:Fl_End() -- end of tab two
+fltk:Fl_End() -- end of Fl_Tabs
+
+The second method is often preferable for better visual layout,
+but the first method can potentially make for smaller and more
+flexible code in the event that your tabs and their names are
+uniform, or if they are created dynamically:
+
+my_tab_group=fltk:Fl_Tabs(10,10,300,200)
+fltk:Fl_End()
+tabs={}
+for i=1,6 do
+tabs[i]=fltk:Fl_Group(10,30,300,180,"tab"..i)
+fltk:Fl_End()  
+my_tab_group:add(tabs[i])
+end
+
+There you've just created 6 top tabs, labeled "tab1"..."tab6",
+which can now be populated with content in a very similar way.
+
+I'm not honestly sure if Fl_End() is needed when using add()

@@ -1,0 +1,6 @@
+
+Fl_Tooltip is one of a few FLTK classes which is not (in murgaLua)
+manipulated as a subset of 'fltk'. Where most widget classes can
+be assigned a pointer and then manipulated independently of other
+widgets of the same class, Fl_Tooltip changes apparently affect
+all tooltips in a script.

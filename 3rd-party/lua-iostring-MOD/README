@@ -1,0 +1,133 @@
+iostring: a file-flavored interface to strings
+
+Two implementations are included; one in pure Lua, the other as a C
+extension.  The interfaces are interchangable.  If the C
+implementation is available, it can be used by adding
+"iostring=ciostring" somewhere.
+
+Sometimes you to reuse code designed for the "io" interface to files
+as a processing stage.  For example, you may want to read the result
+of writing to a file back into a string for further processing.
+Creating and deleting a temporary file to hold the data is complicated
+(and potentially risky in security-sensitive software.)
+
+iostring provides objects that behave like Lua filehandles but are
+implemented on strings.  Currently, only write-only, non-seeking
+iostrings are implemented.  (Feel free to implement more, of course.)
+
+iostring.newoutput() returns an object with the following methods:
+
+out = iostring.newoutput()
+
+Returns a write-only, non-seekable iostring object.  Internally, it is
+implemented such that repeated appends do not consume time
+proportional to the size of the existing contents, using the code from
+LTN 9.  Note that this is substantially faster than repeatedly using
+the ".." operator to append to a string.
+
+out:write(value1, ...)
+
+Appends each of the arguments to the iostring.  The arguments must be
+strings or numbers.
+
+out:getstring()
+
+Returns a current copy of the string built by previous calls to
+out:write().
+
+out:flush()
+
+Ensures the string is up to date with all written data.  Note that
+out:getstring() implicitly flushes, so for the current output-only
+implementation, flush is never necessary.
+
+out:close()
+
+Closes the iostring object.  It is an error to call anything but
+getstring on a closed iostring object.
+
+out:lines(), out:read(...), out:seek(...)
+
+These functions raise an error, as they are not implemented.
+
+
+Example:
+---------
+
+function write_squares_table(file)
+  for i = 1,10 do
+    file:write(i, " ", i*i, "\n")
+  end
+end
+
+-- write to file:
+
+diskfile = io.open("squares", "w")
+write_squares_table(diskfile)
+diskfile:close()
+
+-- write to string:
+
+stringfile = iostring.newoutput()
+write_squares_table(stringfile)
+print(stringfile:getstring())
+---------
+
+XML Benchmarks
+
+I wrote a pair of XML serializers, one in the traditional "concat and
+return" style, and another that works with output handles, either
+files or iostrings.  The serialized document is a shallow table of
+squares of the form:
+
+<squares>
+  <entry><x>1</x><y>1</y></entry>
+  <entry><x>2</x><y>4</y></entry>
+  <entry><x>3</x><y>9</y></entry>
+</squares>
+
+The following were run on a Linux P3/700 box, and are not
+comprehensive.
+
+iostr is the iostring implementation in pure Lua.
+concat is a traditional "return a string" implementation
+file uses a temporary file and io.write; then reading in the result
+nullio uses a pure Lua iostring implementation that doesn't actually append anything
+ciostr uses the iostring interface implemented in C.
+
+1 run
+squares	iostr	concat	file	nullio	ciostr
+1	0	0	0	0	0
+10	0	0	0	0	0
+100	0.02	0.01	0	0.01	0.01
+1000	0.27	0.35	0.06	0.08	0.06
+10000	2.74	49.8	0.66	0.89	0.62
+
+100 runs
+squares	iostr	concat	file	nullio	ciostr
+1	0.03	0.01	0.02	0.01	0
+10	0.23	0.05	0.07	0.07	0.06
+100	2.44	0.62	0.62	0.73	0.58
+1000	26.6	34.7	6.47	9.3	6.05
+
+10000 runs
+squares	iostr	concat	file	nullio	ciostr
+1	2.94	0.52	1.73	0.83	0.72
+10	23.8	4.64	7	6.98	5.72
+
+Rough analysis:
+
+The "concat as we go" approach is quite efficient for small amounts of
+output, but becomes catastrophic once a certain size is reached.  It
+may be too risky for a general purpose function.
+
+The pure Lua iostring implementation does not suffer catastrophic
+collapse in the face of large output, but has a roughly 4x overhead
+for small amounts of output.
+
+The file-based implementation is quite competitive, at least on Linux.
+
+nullio is mysteriously slower than the file and ciostring implementations.
+
+ciostring wins except for the smallest output, where setup costs
+dominate.

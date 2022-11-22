@@ -1,0 +1,1 @@
+..\..\bin\Windows\murgaLua.exe demos.lua

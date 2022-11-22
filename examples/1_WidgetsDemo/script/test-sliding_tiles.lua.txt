@@ -1,0 +1,5 @@
+
+This is a demonstration of the classic sliding puzzle game.
+Arrange the tiles by moving them one by one into the empty
+slot until the image is unscrambled.
+

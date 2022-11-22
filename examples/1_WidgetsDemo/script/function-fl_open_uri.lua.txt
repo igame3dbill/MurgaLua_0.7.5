@@ -1,0 +1,19 @@
+
+This code sample is not well tested.
+
+The function itself is not fully supported by all platforms
+that support FLTK, and is dependant on the user's environment.
+It seems to work without any issues on Windows. I've heard it
+works as well on OS X.
+
+Linux, being a much more varied system from user to user,
+is less dependable when using such environment-specific tools.
+If the user runs KDE, Gnome, or a similar desktop environment,
+the function will probably work without trouble. If the user
+doesn't have a system-default file manager, mail client, and
+web browser configured, it will likely fail in most cases.
+An example is my own system, which runs a very minimal desktop
+with no systemwide default programs specified. The file and mail
+protocols do not work at all, and the browser protocols work only
+when Firefox is already open.
+

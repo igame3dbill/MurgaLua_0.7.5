@@ -1,0 +1,11 @@
+
+fltk.fl_curve(x1,y1,x2,y2,x3,y3,x4,y4)
+x1,y1 and x4,y4 specify the start and end of the curve.
+
+This demostration uses 2 curves. The end point of the first
+curve shares the same coordinates as the start point of the
+second curve so it appears as though the curves are joined.
+
+I don't know if there is a simpler way to clear drawings.
+I thought simply redrawing the display area would work,
+but that seems to prevent anything from displaying over it.

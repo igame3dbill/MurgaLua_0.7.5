@@ -1,0 +1,18 @@
+
+Provides two additional visual schemes for widgets
+
+Fl:scheme(s)
+where s is one of NULL, "plastic", "gtk+", or "none"
+
+NULL doesn't actually change the scheme itself, but allows
+the script to inherit a scheme from a user's environment. The
+FLTK_SCHEME environment variable or the fltk.scheme X11 resource
+can be set to one of the above three strings to allow scripts
+that include Fl:scheme(NULL) to display your desired scheme.
+
+Since this functionality isn't an automatic part of FLTK, an
+alternative to adding the command to all your scripts could be
+to run them with murgaLua -e 'Fl:scheme(NULL)' scriptname,
+or in some systems can set this as an alias to murgaLua. I suppose
+there are several ways for the end user to get the desired effect
+without having to edit every script...

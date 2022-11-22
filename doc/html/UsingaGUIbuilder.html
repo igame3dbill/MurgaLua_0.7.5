@@ -1,0 +1,186 @@
+﻿<html>
+	
+<head>
+	<title>Using a GUI builder</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript"><!--
+		var sTopicId = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+		if (top.frames.length == 0)
+			top.location.href = "index.html?" + sTopicId
+		else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			top.FrameTOC.SelectTocItem(sTopicId);
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Using a GUI builder</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Walkthrough.html">Walkthrough</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Walkthrough.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Somethingbetter.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Tutorials.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p><span class="rvts21">Using FLUID to generate our UI</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Although being able to use FLTK from within Lua is great it is a pain to have to learn all those widgets and work out the coordinates and sizes ...</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Wouldn't it be nice if we could use the UI designer FLTK has to create our UI's ?</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The problem is that FLTK is a C++ toolkit, and as a consequence C++ is what FLUID generates.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Enter "convertFluidToMurgaLua" ... My effort at a generic FLUID C++ to Lua converter :-)</span></p>
+<p><span class="rvts22">Now superseded by lua_from_fluid ...</span></p>
+<p><span class="rvts22"><br></span></p>
+<p><span class="rvts6">Anyway, lets take a look at how to create UI's in FLUID for Lua.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Run the FLUID executable that you'll find in "bin", and you should see something like this :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><img border="0" alt hspace="1" vspace="1" src="lib/NewItem8.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts22">Note : It is all too easy to "loose" the widget bin, in this case go to the "Edit / Show Widget Bin" menu or hit CTRL-B.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Anyway, the FLTK distribution contains a tutorial on how to use FLUID, but in order to use it for LUA code generation you'll be better off following these simple instructions. Lets go through it step-by-step ...</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts22">Creating the Window</span></p>
+<p><span class="rvts6"><br></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li value="1" class="rvps7" style="margin-left: 0"><span class="rvts6">First of all start FLUID (duh!) </span></li>
+<li value="2" class="rvps7" style="margin-left: 0"><span class="rvts6">Click the "Function" button in the "Widget Bin". </span></li>
+<li value="3" class="rvps7" style="margin-left: 0"><span class="rvts6">Just press OK in the "Function/Method Properties" dialog that appears. </span></li>
+<li value="4" class="rvps7" style="margin-left: 0"><span class="rvts6">Now click the "Window" button in the "Widget Bin". </span></li>
+<li value="5" class="rvps7" style="margin-left: 0"><span class="rvts6">Double click inside the new window that was created. </span></li>
+<li value="6" class="rvps7" style="margin-left: 0"><span class="rvts6">Type "My first window" as the "Label:" for the new window.</span><br><span class="rvts29">You may want to re-size the created window so you can see the title). </span></li>
+</ol></ol>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps7"><img border="0" alt hspace="1" vspace="1" src="lib/NewItem7.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">And now it's time to ...</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts22">Put some stuff on the window :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li value="1" class="rvps7" style="margin-left: 0"><span class="rvts6">Lets start by making sure we have clicked back on the window we created. </span></li>
+<li value="2" class="rvps7" style="margin-left: 0"><span class="rvts6">Click the "Return Button" button in the "Widget Bin", enter a caption of "A return button", press ENTER ...</span><br><span class="rvts29">You may want to resize according the the screen shot :-)</span></li>
+<li value="3" class="rvps7" style="margin-left: 0"><span class="rvts6">Click the "Check Browser" button in the "Widget Bin", enter a caption of "Some Choices", press ENTER ...</span><br><span class="rvts29">And again resize to allow room for the input field. </span></li>
+<li value="4" class="rvps7" style="margin-left: 0"><span class="rvts6">Now click the "Input" button in the "Widget Bin" and press ENTER,. </span></li>
+<li value="5" class="rvps7" style="margin-left: 0"><span class="rvts6">Place the input button between the "Check Browser" and the "Return Button" so that things look like the do in the screen shot. </span></li>
+<li value="6" class="rvps7" style="margin-left: 0"><span class="rvts6">Try double clicking on the input field, you'll see that the "Properties" dialog comes up, you can close it again by pressing ENTER.</span></li>
+</ol></ol>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps7"><img border="0" alt hspace="1" vspace="1" src="lib/NewItem6.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts22">Create the files</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">OK, now you can save your design and generate the code :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps7" style="margin-left: 0"><span class="rvts6">Go to the "File" menu and click "Save As ..." (or press SHIFT-CTRL-S).</span><br><span class="rvts29">(I recommend saving to the "examples" directory). </span></li>
+<li class="rvps7" style="margin-left: 0"><span class="rvts6">Navigate to the correct directory and enter "MyApp.f" as the filename. </span></li>
+</ul></ul>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Now just go to the command line and try the following (if you saved to the "examples" directory) :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p class="rvps6"><span class="rvts34">$ ../bin/Windows/murgaLua.exe ../tools/lua_from_fluid.lua MyApp.fl - &gt; MyApp.lua</span></p>
+<p class="rvps6"><span class="rvts34">$ ../bin/Windows/murgaLua.exe MyApp.lua</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The first command creates a LUA file from the FLUID GUI definition.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">So after running the second line you should see something like this (depending on your design) :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps7"><img border="0" alt hspace="1" vspace="1" src="lib/NewItem5.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The contents of "MyApp.lua" should be something like this : </span><br><span class="rvts29">(More or less as the converter has improved)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">do</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">local object = fltk:Fl_Double_Window(166, 165, "My App");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window = object;</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Return_Button(5, 130, 155, 30, "A return button");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Check_Browser(5, 5, 155, 70, "Some choices");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Input(5, 95, 155, 30);</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">end</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window:show();</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">Fl:run()</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The next thing is to put some logic ... Make the UI do something.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">For example we could :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li value="1" class="rvps7" style="margin-left: 0"><span class="rvts6">Name the objects so that can manipulate them (as seen in previous examples). </span></li>
+<li value="2" class="rvps7" style="margin-left: 0"><span class="rvts6">Add some values to the controls. </span></li>
+<li value="3" class="rvps7" style="margin-left: 0"><span class="rvts6">Maybe add some callback logic so that we can see things happen. </span></li>
+</ol></ol>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">After about 5 minutes things would look like this :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">do</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">local object = fltk:Fl_Double_Window(166, 165, "My App");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window = object;</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Return_Button(5, 130, 155, 30, "A return button");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">-- Step one, name the objects</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myOptions = fltk:Fl_Check_Browser(5, 5, 155, 70, "Some choices");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myField = fltk:Fl_Input(5, 95, 155, 30);</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">-- Step two, add some values to the check browser ...</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myOptions:add("Shower and shave")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myOptions:add("Breakfast")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myOptions:add("Watch TV")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myOptions:add("Go to work")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myOptions:add("Call the plumber")</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">-- Step tree, put in some code to react to a value-change</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">myField:callback(</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp;function(myField)</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk.fl_message("Changed the value to \"" .. myField:value() .. "\"")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp;end)</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">end</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window:show();</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">Fl:run();</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">This is a simple example, and hopefully took just a few minutes to complete.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Once you have the code above you should see the following when running it. </span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"> &nbsp; &nbsp; &nbsp; &nbsp;</span><img border="0" alt hspace="1" vspace="1" src="lib/NewItem4.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Now on to something more complicated ...</span></p>
+<p><span class="rvts6"><br></span></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2006-12 John de Murga</div>
+		</div>
+	</body>
+	
+</html>
+

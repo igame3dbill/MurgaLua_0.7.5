@@ -1,0 +1,11 @@
+
+The roller is one of the more visually interesting widgets, behaving much
+like the volume control of an old transistor radio.
+
+The default roller, which is controlled by an up/down drag, seems to be
+the opposite of what it should be, in my opinion. I feel that dragging *up*
+should increase its value. Reversing the minimum and maximum values only
+serves to make it appear to turn in the opposite direction of the drag.
+
+The roller is quite good in that it will continue to work as long as you
+continue a single drag, regardless of whether the cursor leaves the widget.

@@ -1,0 +1,28 @@
+
+Sliders provide a common type of control in which a numeric value
+is adjusted by dragging a knob along a vertical or horizontal track.
+
+FLTK provides 2 types of vertical and 3 types of horizontal slider:
+
+Fl_Slider(x-position,y-position,width,height,label)
+Fl_Nice_Slider(x-position,y-position,width,height,label)
+Fl_Hor_Slider(x-position,y-position,width,height,label)
+Fl_Hor_Nice_Slider(x-position,y-position,width,height,label)
+Fl_Value_Slider(x-position,y-position,width,height,label)
+
+The "nice" sliders simply have a slightly more detailed appearance.
+
+Fl_Value_Slider adds a numerical output box to the slider.
+It's value is floating point by default, but it can be changed to
+an integer by using an integer as its step value:
+my_slider:step(50)
+
+Fl_Slider can be forced horizontal or horizontal nice:
+my_slider:type(fltk.FL_HORIZONTAL)
+my_slider:type(fltk.FL_HOR_NICE_SLIDER)
+
+Fl_Value_Slider can be forced vertical or nice vertical:
+my_slider:type(fltk.FL_VERTICAL)
+my_slider:type(fltk.FL_VERT_NICE_SLIDER)
+
+Callback is done each time its value changes.

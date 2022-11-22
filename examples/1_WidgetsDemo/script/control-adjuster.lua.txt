@@ -1,0 +1,14 @@
+
+Creates a 3-button widget that adjusts a floating point value.
+
+fltk:Fl_Adjuster(x_position,y_position,width,height,"text label")
+
+If height is greater than width, adjuster buttons will be stacked vertically.
+
+When you press a button and drag to the right, or click a button, the value
+increases.  When you drag to the left, or hold Shift or Ctrl while clicking,
+it decreases.  The largest button adjusts by 100 * step(), the next by
+10 * step(), and the smallest button by step().  Clicking on the buttons
+increments by 10 times the amount dragging by a pixel does. Shift + click
+decrements by 10 times the amount.
+

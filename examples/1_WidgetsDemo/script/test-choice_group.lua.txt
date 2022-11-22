@@ -1,0 +1,9 @@
+
+A somewhat accurate emulation of the FLU Choice Group widget
+(http://www.osc.edu/archive/FLU/)
+
+The "page" table should ideally be a part of the flu_choice_group function,
+but so far I haven't developed an easy way to do this. Incorporating every
+necessary part of a group into a single function would go a long way toward
+having the ability to easily create your own reusable composite widgets.
+

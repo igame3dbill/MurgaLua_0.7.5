@@ -1,0 +1,123 @@
+﻿<html>
+	
+<head>
+	<title>Introduction</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript"><!--
+		var sTopicId = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+		if (top.frames.length == 0)
+			top.location.href = "index.html?" + sTopicId
+		else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			top.FrameTOC.SelectTocItem(sTopicId);
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Introduction</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="IntroductionGroup.html">Introduction</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="IntroductionGroup.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="VersionHistory.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="InstallationDeployment.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p><span class="rvts21">Why do we need yet another platform ?</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">murgaLua was born from a frustration with the size and licensing of some of the development tools I had been using. When I started the project I was a Java developer by trade, but for my personal projects I wanted something that was better to deploy, something that :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts6">Could provide nice GUI's, Networking, Databases &amp; XML in a much smaller runtime (about 500k).</span></li>
+<li><span class="rvts6">Would allow me to create rich applications easily (preferably with a GUI builder)</span></li>
+<li><span class="rvts6">Must deploy to both Linux and Windows with no changes to my code.</span></li>
+<li><span class="rvts6">I didn't want a completely cryptic and propriety language.</span></li>
+</ul>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Now, there where many things on the market that fulfilled most of those criteria, however, there was nothing that fulfilled all of them or that came close in terms of size to what I wanted.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">So I decided to see what I could do ...</span></p>
+<p><span class="rvts6">And what did I do ?</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The first step was to find a core language that was small, easy to learn, portable, and that had advanced features.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">I settled on Lua (http://www.lua.org/), which was popular in the embedded and game development space and appeared to be easy to bind to ... It also turned out to be an awesome language.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The next step was finding bindings that where rich and small enough, and I found that the Lua community had done most of that work for me :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts6">I initially ported lua-httpd (http://www.steve.org.uk/Software/lua-httpd/) to Win32 and Linux, but I found it too limited.</span></li>
+<li><span class="rvts6">LuaSocket (http://www.cs.princeton.edu/~diego/professional/luasocket/), was larger and more complex but ultimately much more flexible.</span></li>
+<li><span class="rvts6">LuaSqlite (http://luasqlite.luaforge.net/lsqlite.html) provided a solid and light ANSI SQL RDBMS, so that was a no brainer.</span></li>
+</ul>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">When it came to my XML requirements I found nothing that really addressed my needs (in terms of size and speed), so I adapted some code I had seen for TinyXML and made it the foundation for my new binding, which I am still adding to right now.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">GUI was the next problem, and it didn't seem easy to solve ... However, I stumbled across lua-fltk (http://lua-fltk.sourceforge.net/), and this proved to me that a tiny runtime for both Linux and Windows WAS possible with FLTK. Unfortunately the existing bindings where VERY basic and out of date and there was nothing I could use, as I wanted something that would work with new versions of FLTK and Lua and that I could improve ... So I hacked around and knocked up my own binding.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Having settled on FLTK I wondered if it may be possible to use it's basic GUI builder (FLUID) to generate my code, and much my to my surprise after less than an hour I had written a utility to convert it's generated code to my new murgaLua bindings.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">My objective was complete.</span></p>
+<p><span class="rvts6">So what's actually included ?</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The murgaLua distribution includes all required binaries along with examples and all the source and documentation for my code and used libraries, and have been evolving over the last few years.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Basically everything you could need for developing with murgaLua.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">I use this myself for my own projects, so I make sure it is all there :-)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">This is what's in this archive :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts6">The murgaLua binaries for Windows, Linux and MacOs (the runtime).</span></li>
+<li><span class="rvts6">FLUID - (F)ltk (U)ser (I)nterface (D)esigner - GUI builder binaries compiled for Windows, Linux and MacOs.</span></li>
+<li><span class="rvts6">murgaLua tools for converting UI definitions, building and much more.</span></li>
+<li><span class="rvts6">Source for all the used FLTK bindings.</span></li>
+<li><span class="rvts6">Source for murgaLua itself.</span></li>
+<li><span class="rvts6">Documentation for all the APIs (even FLTK).</span><br><span class="rvts6"><br></span></li>
+</ul>
+<p><span class="rvts6">If for any reason you want to rebuild murgaLua or port it to another platform you'll also need a good GCC and GNU make based environment and the following :</span></p>
+<p><span class="rvts6"><br></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts6">The FLTK toolkit (1.1.X).</span></li>
+<li><span class="rvts6">Lua itself (5.1.x)</span></li>
+<li><span class="rvts6">SqLite (or SqlCipher + OpenSSL)</span></li>
+<li><span class="rvts6">libffi and fann</span></li>
+</ul>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">For your convenience I have mirrored the files at :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><a class="rvts31" href="http://www.murga-projects.com/murgaLua/files/" target="_blank">http://www.murga-projects.com/murgaLua/files/</a></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2006-12 John de Murga</div>
+		</div>
+	</body>
+	
+</html>
+

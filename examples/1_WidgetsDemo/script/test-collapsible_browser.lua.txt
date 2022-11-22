@@ -1,0 +1,36 @@
+
+This demonstrates essentially the same browser behavior that is used
+in the main interface. I thought it would be easier to follow if all
+parts of the script were kept together in one spot. This version is
+also a little cleaner and more streamlined than that found in the
+main script, basically because the main script works as-is and I
+didn't want to risk breaking it simply to make it slightly cleaner.
+
+This example also includes features not found in the main script,
+such as indenting the category contents with an arbitrary string.
+
+You have each section starting with a formatted browser line.
+The format string (sep) is what the script uses to determine whether
+the selected line is a section header or a regular line. This info
+is used both to decide whether the toggle function should run and
+to delimit the group of lines that are being hidden or shown.
+
+If the sep string isn't found in the text of the selected item
+it is considered data between the separators and is printed to
+the output field. This action can of course be changed to run
+whatever action the author wants with the item's index or text.
+
+The browser is populated with data stored in a table. This table
+is made up of an array for each browser section, with the format
+{sep.."-  title string", "item 1", "item 2", ... }
+
+The "-" is changed to "+" when the section is collapsed.
+
+When retrieving the text of a given line, it is necessary to
+strip sep from section headers and t from regular lines.
+sep is the header format string and t is the indent string.
+
+The help says to use Alt+number to jump to a section header.
+In this particular demo the Alt is not needed, but if your
+program includes a text input/editor the Alt is needed when
+that text widget has focus.

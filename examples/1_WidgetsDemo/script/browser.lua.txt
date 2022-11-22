@@ -1,0 +1,17 @@
+
+Five types of Fl_Browser:
+* Fl_Browser displays lines of text.
+* Fl_Select_Browser allows you to select one line.
+* Fl_Hold_Bowser allows you to select a line and keep it selected.
+  This is what you see on the left of this demo application window.
+* Fl_Multi_Browser selects multiple adjacent lines with drag or Shift+click,
+  or Ctrl+click to select arbitrary lines.
+* Fl_Check_Browser toggles the selection of one or more lines.
+  Selection is indicated by a check mark.
+
+fltk:Fl_Browser(x_position,y_position,width,height,"text label")
+
+Browser will accept input beginning with format characters,
+such as @b to print the line with a bold font.
+See the FLTK docs for more info:
+Class Reference -> Fl_Browser -> format_char 

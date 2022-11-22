@@ -1,0 +1,79 @@
+--- configure	2004-09-24 21:38:58.000000000 +0200
++++ configure	2009-01-28 19:26:48.000000000 +0100
+@@ -19200,11 +19200,12 @@
+ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+ 
+-  if test "$cross_compiling" = "yes"; then
+-    { { echo "$as_me:$LINENO: error: unable to find a compiler for building build tools" >&5
+-echo "$as_me: error: unable to find a compiler for building build tools" >&2;}
+-   { (exit 1); exit 1; }; }
+-  fi
++if test "$cross_compiling" = "yes"; then
++     { { echo "$as_me:$LINENO: error: unable to find a compiler for building build tools" >&5
++   echo "$as_me: error: unable to find a compiler for building build tools" >&2;}
++     }
++   fi
++
+   BUILD_CC=$CC
+   default_build_cflags=$CFLAGS
+ else
+@@ -20098,19 +20099,15 @@
+     as_ac_File=`echo "ac_cv_file_$dir/include/tcl.h" | $as_tr_sh`
+ echo "$as_me:$LINENO: checking for $dir/include/tcl.h" >&5
+ echo $ECHO_N "checking for $dir/include/tcl.h... $ECHO_C" >&6
+-if eval "test \"\${$as_ac_File+set}\" = set"; then
+-  echo $ECHO_N "(cached) $ECHO_C" >&6
+-else
+-  test "$cross_compiling" = yes &&
+-  { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
+-echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
+-   { (exit 1); exit 1; }; }
+-if test -r "$dir/include/tcl.h"; then
+-  eval "$as_ac_File=yes"
+-else
+-  eval "$as_ac_File=no"
+-fi
+-fi
++   if eval "test \"\${$as_ac_File+set}\" = set"; then
++     echo $ECHO_N "(cached) $ECHO_C" >&6
++   else
++     test "$cross_compiling" = yes &&
++     { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
++   echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
++     }
++     eval "$as_ac_File=yes"
++   fi
+ echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_File'}'`" >&5
+ echo "${ECHO_T}`eval echo '${'$as_ac_File'}'`" >&6
+ if test `eval echo '${'$as_ac_File'}'` = yes; then
+@@ -20505,19 +20502,16 @@
+     as_ac_File=`echo "ac_cv_file_$dir/include/readline.h" | $as_tr_sh`
+ echo "$as_me:$LINENO: checking for $dir/include/readline.h" >&5
+ echo $ECHO_N "checking for $dir/include/readline.h... $ECHO_C" >&6
+-if eval "test \"\${$as_ac_File+set}\" = set"; then
+-  echo $ECHO_N "(cached) $ECHO_C" >&6
+-else
+-  test "$cross_compiling" = yes &&
+-  { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
+-echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
+-   { (exit 1); exit 1; }; }
+-if test -r "$dir/include/readline.h"; then
+-  eval "$as_ac_File=yes"
+-else
+-  eval "$as_ac_File=no"
+-fi
+-fi
++   if eval "test \"\${$as_ac_File+set}\" = set"; then
++     echo $ECHO_N "(cached) $ECHO_C" >&6
++   else
++     test "$cross_compiling" = yes &&
++     { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
++   echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
++     }
++     eval "$as_ac_File=yes"
++   fi
++
+ echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_File'}'`" >&5
+ echo "${ECHO_T}`eval echo '${'$as_ac_File'}'`" >&6
+ if test `eval echo '${'$as_ac_File'}'` = yes; then

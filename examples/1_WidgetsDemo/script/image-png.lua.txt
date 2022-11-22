@@ -1,0 +1,2 @@
+
+Simple use of an external PNG image as a widget label.

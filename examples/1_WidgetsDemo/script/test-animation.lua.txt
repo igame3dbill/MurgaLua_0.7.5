@@ -1,0 +1,13 @@
+
+An image sequence animation demo.
+
+This was initially a test of pseudo-animation, which required the
+user to press a repeat_button to force the looping of a sequence
+of images. Shortly thereafter, John Murga took it and whipped out
+this nice improvement that used his new timer in murgaLua 0.5
+
+The timer's callback sets the box's image() to one of a series of
+sequentially-named image files and then redraws the box.
+
+The spinner changes the timer's wait time
+

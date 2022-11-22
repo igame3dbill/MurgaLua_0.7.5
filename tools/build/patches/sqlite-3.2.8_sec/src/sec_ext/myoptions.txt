@@ -1,0 +1,54 @@
+AES code with optional VIA ACE support
+and SHA code. Both downloaded on Dec 20, 2004.
+
+
+Options used in AES and key derivation
+--------------------------------------
+In aesopt.h:
+VIA ACE SUPPORT - 0
+FUNCTIONS REQUIRED - AES_ENCRYPT and AES_DECRYPT defined in aes.h
+ASSEMBLER SUPPORT - 0
+BYTE ORDER WITHIN 32 BIT WORDS - default (=PLATFORM one)
+FAST INPUT/OUTPUT OPERATIONS - default
+LOOP UNROLLING - FULL for both
+FAST FINITE FIELD OPERATIONS - 1 (FF_TABLES)
+INTERNAL STATE VARIABLE FORMAT - 1 (arrays)
+FIXED OR DYNAMIC TABLES - 1 (fixed)
+TABLE ALIGNMENT - 0 (not MSVC)
+INTERNAL TABLE CONFIGURATION - default (FOUR_TABLES for all)
+
+In aes.h:
+AES_ENCRYPT - already defined
+AES_DECRYPT - already defined
+AES_128 - commented out
+AES_192 - commented out
+AES_256 - already defined
+AES_VAR - commented out
+AES_1_BLOCK - already defined
+AES_ERR_CHK - already defined
+AES_REV_DKS - already defined
+AES_BLOCK_SIZE - 16	=> aes_ctr_crypt() assumes it is 16.
+N_COLS - 4
+
+In hmac.h:
+Defined USE_SHA256 after the #include directives.
+
+Fixed endian detection defines in sha1.c and sha2.c because the MinGW compiler
+on Windows does not have endian.h or byteswap.h. Copied over the one
+from aesopt.h, which gives no problems.
+
+
+Used Bigdigits library
+----------------------
+Created makelib.mak to create an archive of the library.
+Currently not portable... 
+
+1) Download library from http://www.di-mgt.com.au/bigdigits.html
+2) Extract it to a directory.
+3) Copy the provided GNU Makefile 'Makelib.mak' into that directory.
+4) Change the first few #define's and typedef's in bigdigits.h to suit your
+   platform.
+5) Type 'make -f Makelib.mak' without quotes to compile it.
+6) No automatic install script, so copy the resulting libbdmpa.a into SQLite
+   directory.
+7) Build SQLite.

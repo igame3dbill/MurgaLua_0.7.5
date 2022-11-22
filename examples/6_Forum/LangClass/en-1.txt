@@ -1,0 +1,32 @@
+When it comes to learning about current geology, the intelligent public has had two long-standing avenues of information. But a new third channel on the Web is growing more and more influential.
+The Open Literature
+
+The lifeblood of geologic research is publication. For research geologists in academia and government, for whom publications are part of their job performance, the gold standard is getting articles into a major journal in the open literature.
+
+The open literature is where scientists carry on their ancient, formal conversation about their subject. It is thousands of journals, issued by commercial publishers or scientific societies, that rely on more or less strict quality standards. These are enforced by respected editors, who see that submitted papers are carefully reviewed by fellow scientists who know what the author is talking about. Though this system of peer review has flaws (biased editors, conniving reviewers and slow action are the most serious possibilities), on the whole it works well for scientists.
+
+However, for the public the open literature is not ideal. First, it isn't public literature: you must spend a lot on subscriptions (for geology it would be thousands of dollars) or live near a major research library to read it. (A small but growing number of journals are publishing with open access—find some in the Geology Journals category.)
+
+Second, the popular press adds a translation step between the open literature and the public. To reach the top journals that get the attention of journalists, authors are tempted to inflate their conclusions. When scientists strain to produce sexy papers, their overstatements are amplified as the journals' press offices drum up interest among reporters. Add to that the fast news cycle and the universal appetite for buzz, and the people are not always well served, nor science either. Yes, soundbites and headlines are better than nothing, but because of this system much of the popular press publishes little that is not somehow distorted.
+
+For a plain example of this distortion, consider a staple argument of global-warming skeptics: in the 1970s, they say, everyone was convinced that Earth was undergoing global cooling and even that a new Ice Age was in the works. A literature survey showed in 2008 that this impression came from articles in the lay press like Newsweek, not the journals. But one early high-profile paper about a cooling trend was in Science. That can be all it takes to slant reporters' minds for years afterward—and for skeptics to exploit misleadingly even today.
+The Gray Literature
+
+The gray literature is formal publications outside the open literature, basically things that scientists are required to write: government agency reports, Ph.D. theses, environmental impact statements, museum bulletins and so on. It serves its limited audience well. While some gray literature is of the very highest quality, some is just numbing boilerplate. Much of it is essential supporting material for the flashier science in the journals.
+
+Most gray literature is nonproprietary, legally meant for the public, but hard-copy repositories are scarce and incomplete. Gray-literature publishers don't do much press outreach. That's why papers in Science and Nature routinely get headlines while only a few gray-lit giants make the front page, the IPCC global-warming reports issued by the United Nations being one recent example.
+
+But the Web has reversed the definitions: On the Web, the public can access gray literature more easily than open literature (see Science.gov, for example). Many bloggers explore it. And that is basically why gray literature is created at all—to inform earnest discussion about important subjects that people of good will take seriously. The flaws of reporting the open literature are nearly absent for the gray literature.
+The Clear Literature
+
+But the Web has done more than turn the old labels upside-down. When scientists found that Web sites are an easy way of sharing work with each other, the public gained access to it as well. This body of work, written by scientists for their peers but readable by all, I call the clear literature.
+
+A major success in the clear literature is the arXiv (pronounced "archive") site, an open repository for scholarly papers in physics and related fields. It relies for quality control on a clever self-policing system of endorsements.
+
+Another influential source in the clear literature is the Public Library of Science, which publishes peer-reviewed papers for free. Like arXiv articles, PLoS papers are finding citations in the mainstream press.
+
+In geology, the mantleplumes.org site is another new thing under the sun. It's a site hosting scholarly articles that are tightly organized around a central hypothesis opposing the majority view of dynamics in the Earth's mantle. The articles are of high quality, and while some are duplicated in the open literature, others are effectively broadsides not meant for hard-copy, aimed at persuasion and written in more approachable language than the typical journal paper. The site also includes more philosophical pieces, and some humor. It's geology with the juice left in.
+
+The simplest, most widespread form of clear literature is researchers putting up PDFs of their current papers on their own sites. Because journals usually reserve all rights to the final paper, authors commonly bypass the ban by posting earlier drafts. These are just as good for most purposes, and they have the virtue of timeliness.
+
+For the seriously interested public, the clear literature promises things that the open and gray literature can't. The scientist's human voice can be closer to the reader's ear, without the distortions of the publication system, the news process or the need to find a library.

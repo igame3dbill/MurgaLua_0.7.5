@@ -1,0 +1,4 @@
+
+This is John Murga's murgaLua 0.6 menu example, after I poked at it a little
+to test using only individual menu item callbacks and changed print commands
+to fl_message commands.

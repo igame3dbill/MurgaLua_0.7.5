@@ -1,0 +1,8 @@
+
+This is an extension of gravity1.lua
+The goal was to try to do the same as gravity1, but increase the pull
+as objects get closer to the cursor. Since I don't know mathematics,
+I was just pulling equations out of my butt and didn't get it sorted.
+
+But I somehow made something trippy instead, so I thought I'd keep it.
+

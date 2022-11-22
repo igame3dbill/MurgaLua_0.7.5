@@ -1,0 +1,26 @@
+
+Each box shows the code used to display a symbol,
+followed by the symbol displayed by that code.
+
+The left column displays the built-in symbols.
+The right column shows various transformations.
+
+Transforms are added immediately after the "@"
+Scaling is done with +[1-9] and -[1-9]
+Rotation is done according to numbers on a
+numeric keypad. Imagine your symbol is sitting
+on the 5 with its right side facing 6. As you
+rotate clockwise at 45-degree intervals, the
+right side of the symbol will face the keys
+3,2,1,4,7,8,9, in that order.
+
+Scaling and transforming can be combined.
+Scaling is done first.
+@+92-> displays a large arrow pointing down:
+  +9 scales the symbol to its largest size
+  2 rotates 90 degrees clockwise
+
+$ flips the symbol horizontally
+% flips the symbol vertically
+@@ displays a literal @
+

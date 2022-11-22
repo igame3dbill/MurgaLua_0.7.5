@@ -1,0 +1,186 @@
+﻿<html>
+	
+<head>
+	<title>Something better</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript"><!--
+		var sTopicId = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+		if (top.frames.length == 0)
+			top.location.href = "index.html?" + sTopicId
+		else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			top.FrameTOC.SelectTocItem(sTopicId);
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Something better</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Walkthrough.html">Walkthrough</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Walkthrough.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Yourfirstprogram.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="UsingaGUIbuilder.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p><span class="rvts21">Something better</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">So that last example was kinda lame ... How about a nice window and some buttons ?</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">OK, create a file called "step1.lua" and type this code in :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window = fltk:Fl_Window(505, 145, "My first little app")</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Button(5, 5, 310, 135, "My First Button")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Button(320, 65, 180, 35, "Load a picture")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Button(320, 105, 180, 35, "Quittin Time")</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window:show()</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">Fl:run()</span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Now run the file like we did before ("bin/murgaLua step1.lua") ...</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">This is what you should see :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><img border="0" alt hspace="1" vspace="1" src="lib/NewItem2.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Umm, OK ... We now have a basic UI.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">It should be fairly obvious how we created the buttons : we looked up "Fl_Window", and "Fl_Button" in the FLTK reference and found the parameters we needed.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Then we worked how where and how big we wanted everything and put the calls together ...</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">There is a much better/faster way to do this ... But that's in the next tutorial :-)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Anyway, those controls don't do anything yet, so copy your file to "step2.lua" and make the changes below (marked in red) :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window = fltk:Fl_Window(505, 145, "My first little app")</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step one, we have to assign our button to a variable in order</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- to be able to do things with it ...</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">firstButton = fltk:Fl_Button(5, 5, 310, 135, "My First Button")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Button(320, 65, 180, 35, "Load a picture")</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">fltk:Fl_Button(320, 105, 180, 35, "Quittin Time")</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step two, add a slider and get it change another control</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">slider = fltk:Fl_Slider(320, 10, 180, 30, "Size Me")</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">slider:type(1)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">slider:range(5, 55)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">slider:step(1)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">slider:value(firstButton:labelsize())</span></p>
+<p class="rvps6"><span class="rvts35"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">slider:callback(</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp;function(slider)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">firstButton:labelsize(slider:value())</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">firstButton:label("My size is " .. slider:value())</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">firstButton:redraw()</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp;end)</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window:show()</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">Fl:run()</span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">If you made the changes correctly you should be able to run the file and see the following (try moving the slider) :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><img border="0" alt hspace="1" vspace="1" src="lib/NewItem1.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">So now we have added some behavior, as you see we had to assign our controls to variables in order to anything with them.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Still not very impressive ... Let's try to put some more complex behavior in there. </span></p>
+<p><span class="rvts6">Copy your file to "step2.lua" and make these changes (marked in red again) :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window = fltk:Fl_Window(505, 145, "My first little app");</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">firstButton = fltk:Fl_Button(5, 5, 310, 135, "My First Button");</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step three, we name everything</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">loadImage = fltk:Fl_Button(320, 65, 180, 35, "Load a picture");</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">quitButton = fltk:Fl_Button(320, 105, 180, 35, "Quittin Time");</span></p>
+<p class="rvps6"><span class="rvts35"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">slider = fltk:Fl_Slider(320, 10, 180, 30, "Size Me");</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">slider:type(1)</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">slider:range(5, 55)</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">slider:step(1)</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">slider:value(firstButton:labelsize())</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">slider:callback(</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">function(slider)</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp;firstButton:labelsize(slider:value())</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">firstButton:label("My size is " .. slider:value())</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">firstButton:redraw()</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp;end)</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step four, add a callback that we can share.</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">function quit_callback(object)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">if fltk.fl_ask("Are you sure ?") &gt;= 1 then</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">window:hide()</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">end</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">end</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step five, assign the callback to two objects.</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">window:callback(quit_callback)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">quitButton:callback(quit_callback)</span></p>
+<p class="rvps6"><span class="rvts35"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step six, create a callback function to play with pictures</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">function loadImage_callback(object)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Required before we can use some of the image APIs</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">fltk.fl_register_images()</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Open a nice file chooser to pick an image.</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">fileName = fltk.fl_file_chooser("Choose a picture", "Image Files (*.{bmp,gif,jpg,png})", nil, nil)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Load and create an image object</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">image = Fl_Shared_Image.get(fileName)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Assign it to a control and make sure the UI portion is redrawn.</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">firstButton:image(image)</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">firstButton:redraw()</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">end</span></p>
+<p class="rvps6"><span class="rvts35"><br></span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">-- Step seven, assign the image load function to the "Load a picture" button</span></p>
+<p class="rvps6"><span class="rvts35"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts35">loadImage:callback(loadImage_callback)</span></p>
+<p class="rvps6"><span class="rvts34"><br></span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">window:show()</span></p>
+<p class="rvps6"><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">Fl:run()</span></p>
+<p class="rvps6"><span class="rvts33"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Now when you run the program click on the "Load a picture" button and choose the "examples/littlePic.gif" file ... You should see this :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><img border="0" alt hspace="1" vspace="1" src="lib/NewItem.png"></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">OK, now this a little more like it, we created a little function to choose and load a picture and we displayed it in one of our controls.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">We are also using two dialogs (asking a question, and choosing a file), and we hooked into the window so that we can ask the user if he really wants to exit.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Now lets see if we can make this whole UI design easier (on to FLUID) ...</span></p>
+<p><span class="rvts6"><br></span></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2006-12 John de Murga</div>
+		</div>
+	</body>
+	
+</html>
+

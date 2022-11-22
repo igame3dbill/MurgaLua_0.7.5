@@ -1,0 +1,20 @@
+
+Using embedded pixmap data to display an image.
+While I do like the convenience of an external directory for RGB images
+(where you can quickly swap images when necessary), pixmaps are great for
+small images that are often used as part of a user interface.
+Embedding them in the script can make it much more portable.
+
+my_widget:image(fltk:Fl_Pixmap(xpm_data))
+
+xpm_data is a table containing the pixmap data.
+Unlike an XPM file, which often contains C comments (/* comment */) and
+requires that /* XPM */ be its first line, the image data that Fl_Pixmap
+uses must be only the image data itself, each line being a table index.
+
+The first line is a string of four integers representing the number of
+columns, rows, colors, and characters per pixel, in that order.
+
+The next series of lines are the color definitions.
+
+Finally are the lines representing the visual layout of the image.

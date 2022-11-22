@@ -1,0 +1,16 @@
+
+A radio button is similar to a toggle button, with the difference
+that only one radio button within the same group can be selected
+at any given time. When one radio button is pressed, all other
+radio buttons in that group will become unselected.
+
+FLTK provides two ways to create radio buttons. One way is to
+set the type of a given button to fltk.FL_RADIO_BUTTON (102).
+In this case Fl_Button will behave like Fl_Toggle_Button,
+retaining its "down" state when pressed and released.
+
+The second method of creating radio buttons is to use one of
+three classes that were omitted from the FLTK documentation:
+Fl_Radio_Button is the same as Fl_Button with button type 102
+Fl_Radio_Round_Button is <Fl_Round_Button>:type(102)
+Fl_Radio_Light_Button is <Fl_Light_Button>:type(102)

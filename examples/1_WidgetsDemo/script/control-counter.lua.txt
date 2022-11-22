@@ -1,0 +1,7 @@
+
+The Fl_Counter widget is provided [in FLTK] for forms compatibility.
+It controls a single floating point value.
+
+FL_SIMPLE_COUNTER allows you to change the value by the smallest
+step (0.1). FL_NORMAL_COUNTER adds a set of double arrows to control
+a larger step, set with lstep(), which defaults to 1.0

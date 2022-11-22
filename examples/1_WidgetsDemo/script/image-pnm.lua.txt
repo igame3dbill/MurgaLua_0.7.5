@@ -1,0 +1,7 @@
+
+fltk:Fl_PNM_Image(filename)
+Provides support for PNM, PBM, PGM, and PPM image files.
+
+I'm not really sure what use this particular format is in FLTK,
+as you can get the same quality, plus transparency, from PNG.
+This sample was made just because the PNM option is there.

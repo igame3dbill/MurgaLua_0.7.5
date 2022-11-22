@@ -1,0 +1,36 @@
+
+As stated on the little popup window, there are unpredictable limits
+to how you can manipulate windows. These limits are mostly determined
+by what application(s) you use to manage windows on your desktop.
+Some of these limits also may translate into apparent bugs in either
+the window manager or in FLTK.
+
+Some window managers on Linux, for example, are very strict about window
+position, size, and visibility. Others are lenient to the other extreme.
+
+I generally use a tiling window manager that forces resizable windows
+into a specific position and size. Fixed-size windows are allowed to
+float, as is done with all windows in most typical desktop systems.
+In this window manager, the new window is tiled initially, but after
+resize() or fullscreen_off(), which also calls resize(), the window is
+seen as fixed-size and therefore my window manager floats it. The window
+manager also seems to have trouble moving the window precisely. When
+nudging the window to the right, for example, it also gets moved down
+slightly, a pixel or two. Since my window manager does not have the
+ability to iconify (minimize) windows, iconize() has no effect.
+
+Another window manager I've tested has no trouble with positioning or
+iconize, but when switching back from fullscreen both the border and
+titlebar are missing from the window.
+
+Both window managers fail to manually resize the window after resize()
+has been called, and free_position() doesn't seem to help. This seems
+lke it may be a FLTK bug, but I'm only guessing.
+
+set_modal() seems to be a permanent setting, unless you explicitly
+destroy the window. There is no "set_normal", and set_non_modal doesn't
+seem to behave any differently than set_modal (other windows still do
+not receive events, contrary to the documentation). I don't care for
+this behavior at all, but the option is there if you want it.
+The example disables the toggle button after showing a modal window
+because it will remain modal no matter what.

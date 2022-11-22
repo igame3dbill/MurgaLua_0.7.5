@@ -1,0 +1,239 @@
+﻿<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+	<title>murgaLua Manual- Table of Contents</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/silver-theme/jquery-ui-1.8.12.custom.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="css/toc.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.treeview.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.12.custom.min.js"></script>
+	<script type="text/javascript" src="js/hndjsse.js"></script>
+	<script type="text/javascript">
+	
+		var bSearchDataLoaded = false;
+	
+		$(document).ready(function()
+		{
+			var sAnchorName = top.location.href.substring(top.location.href.lastIndexOf("#") + 1, top.location.href.length);
+			var nSelectedTab = 0;
+			if (sAnchorName == '_index') nSelectedTab = 1
+			else if (sAnchorName == '_search') nSelectedTab = 2;			
+			$("#tabs").tabs({selected: nSelectedTab});
+			$("#toc").treeview({collapsed: true});
+			$("#keywords").treeview({collapsed: true});
+			// Load search data
+			$.getScript("js/searchdata.js",	function() {
+				bSearchDataLoaded = true;
+			});
+		});
+		
+		function SelectTocItem(sLinkHref)
+		{
+			$("#toc a").each(function()
+			{
+				if ($.inArray(sLinkHref + '.htm', this.href) > -1) $(this).css('font-weight', 'bold')
+				else $(this).css('font-weight', '');
+			});
+		}
+		
+		function HideKwPopup()
+		{
+			if($("#popupMenu")) $("#popupMenu").remove();
+		}
+		
+		function ShowKwPopup(oSender, aLinks)
+		{
+			HideKwPopup();
+			if (!aLinks || !aLinks.length || aLinks.length == 0) return false
+			else if (aLinks.length == 1) return true
+			else
+			{
+				var oParentDiv = document.createElement("DIV");
+				oParentDiv.id = "popupMenu";
+				var oLink = null;
+				for (var nCnt=0; nCnt<aLinks.length; nCnt++)
+				{
+					oLink = document.createElement("A");
+					oLink.innerHTML = aLinks[nCnt][0];
+					oLink.href = aLinks[nCnt][1];
+					oLink.target = "FrameMain";
+					oLink.onclick = HideKwPopup;
+					oParentDiv.appendChild(oLink);
+				}
+				document.body.appendChild(oParentDiv);
+				var pos = $(oSender).offset(); 
+				var height = $(oSender).height();
+				$(oParentDiv).css({
+					"left": (pos.left+20) + "px",
+					"top": (pos.top + height + 5) + "px"
+				});
+				$(oParentDiv).show();
+				return false;
+			}
+		}
+		
+		function PerformSearch()
+		{
+			sValue = $("#search_value").val();
+			$("#search_results").html('Searching...');
+			var oSearchEngine = new HndJsSe;
+			oSearchEngine.ParseInput(sValue);			
+			oSearchEngine.PerformSearch();
+			if (!oSearchEngine.aResults || !oSearchEngine.aResults.length)
+			{
+				$("#search_results").html('No results found.');
+			}
+			else
+			{
+				$("#search_results").html('');
+				var oUl = $("#search_results").append("<ul id='lr'></ul>").find("ul");
+				for (var nCnt = 0; nCnt < oSearchEngine.aResults.length; nCnt++)
+				{
+					oUl.append("<li><a href='" + aTl[oSearchEngine.aResults[nCnt]][0] + "?search=" + escape(sValue) + "' target='FrameMain'>" + unescape(aTl[oSearchEngine.aResults[nCnt]][1]) + "</a></li>");
+				}
+				$("#lr").treeview({collapsed: false});
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	<div id="tabs">
+		<ul>
+			<li><a href="#tab-toc">Contents</a></li>
+			<li><a href="#tab-keywords">Index</a></li>
+			<li><a href="#tab-search">Search</a></li>
+		</ul>
+		<div id="tab-toc">
+			<ul id="toc" class="filetree toctree">
+
+				<li>
+							<a
+							href="MainPage.html"
+							class="file"
+							target="FrameMain">
+								Main Page</a>
+
+				</li><li>
+							<a
+							href="#" onclick="return false;"
+							class="folder"
+							target="FrameMain">
+								Introduction</a>
+
+				<ul><li>
+							<a
+							href="VersionHistory.html"
+							class="file"
+							target="FrameMain">
+								Version History</a>
+
+				</li><li>
+							<a
+							href="Introduction.html"
+							class="file"
+							target="FrameMain">
+								Introduction</a>
+
+				</li><li>
+							<a
+							href="InstallationDeployment.html"
+							class="file"
+							target="FrameMain">
+								Installation/Deployment</a>
+
+				</li></ul></li><li>
+							<a
+							href="#" onclick="return false;"
+							class="folder"
+							target="FrameMain">
+								Walkthrough</a>
+
+				<ul><li>
+							<a
+							href="LearningLua.html"
+							class="file"
+							target="FrameMain">
+								Learning Lua</a>
+
+				</li><li>
+							<a
+							href="Yourfirstprogram.html"
+							class="file"
+							target="FrameMain">
+								Your first program</a>
+
+				</li><li>
+							<a
+							href="Somethingbetter.html"
+							class="file"
+							target="FrameMain">
+								Something better</a>
+
+				</li><li>
+							<a
+							href="UsingaGUIbuilder.html"
+							class="file"
+							target="FrameMain">
+								Using a GUI builder</a>
+
+				</li></ul></li><li>
+							<a
+							href="#" onclick="return false;"
+							class="folder"
+							target="FrameMain">
+								Tutorials</a>
+
+				<ul><li>
+							<a
+							href="Networkchat.html"
+							class="file"
+							target="FrameMain">
+								Network chat</a>
+
+				</li></ul></li><li>
+							<a
+							href="#" onclick="return false;"
+							class="folder"
+							target="FrameMain">
+								Reference</a>
+
+				<ul><li>
+							<a
+							href="murgaLualibraries.html"
+							class="file"
+							target="FrameMain">
+								murgaLua libraries</a>
+
+				</li></ul></li></ul>
+		</div>
+		<div id="tab-keywords">
+			<ul id="keywords" class="filetree indextree">
+
+				</ul>
+		</div>
+		<div id="tab-search">
+			<form onsubmit="PerformSearch(); return false;">
+				<label for="search_value">Search:</label>
+				<input id="search_value" name="search_value"></input>
+				<input type="submit" value="search"/>
+			</form>
+			<div id="search_results"></div>
+		</div>
+	</div>
+    
+</body>
+
+</html>
+

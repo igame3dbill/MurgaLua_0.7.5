@@ -1,0 +1,4 @@
+
+Ahhhhh...this is what I was looking for. Thanks to a quick
+response from Juergen to my cry for help, here's a groovy
+demonstration of the gravitational effect of the mouse.

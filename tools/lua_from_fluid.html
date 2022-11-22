@@ -1,0 +1,950 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>lua_from_fluid</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Arial;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic;}
+h3
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Arial;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.Code, li.Code, div.Code
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=FR link=blue vlink=purple>
+
+<div class=Section1>
+
+<h1><span lang=EN-US>lua_from_fluid.lua:</span></h1>
+
+<h1><span lang=EN-US>murgaLua generator from FLUID project file</span></h1>
+
+<h2><span lang=EN-US>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Introduction</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The Lua file </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>lua_from_fluid.lua</span><span
+lang=EN-US> is a tool used to build a GUI interface for murgaLua, with the help
+of FLUID (FLTK User Interface Designer). FLUID is a good tool to design GUI
+programs using FLTK as a graphical toolkit, but it generates C++ code, which is
+not adapted to murgaLua. The program takes a </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>.fl</span><span lang=EN-US>
+file written by FLUID and generates Lua code that should run under murgaLua.
+Two other tools make a similar conversion, although with less features. Here is
+a summary of the programs:</span></p>
+
+<p class=MsoNormal style='margin-left:54.0pt;text-indent:-27.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>convertFluidToMurgaLua.lua</span><span
+lang=EN-US>, originally a shell script from Markku Kotiaho, ported in Lua by John
+Murga. It uses the generated C++ code as input. Supports only one function
+named </span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>make_window</span><span
+lang=EN-US> and a limited number of special features.</span></p>
+
+<p class=MsoNormal style='margin-left:54.0pt;text-indent:-27.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>fluid_parser</span><span
+lang=EN-US> from iGame3D, written in C using flex and bison. It takes the
+original FL file as input. Supports most widget features and functions, but not
+classes. The generated code is however poorly formatted.</span></p>
+
+<p class=MsoNormal style='margin-left:54.0pt;text-indent:-27.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>lua_from_fluid.lua</span><span
+lang=EN-US>, written by Patrick Rapin, takes the original FL file as input.
+Supports virtually all features of FLUID (classes, widget classes, menus,
+inline callbacks, internationalization …) and tries to keep the generated code
+readable.</span></p>
+
+<h2><span lang=EN-US>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Configuration</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Most of the parameters affecting the
+generation of Lua script come from the FLUID project. But it appears that some
+configuration variables are desired because the needs and preferences of users
+are not always the same. A table containing the default values of the configuration
+parameters is declared at the top of the generator script, and can be easily
+edited to fit user's need. Alternately, the option values can be overridden by
+the command line parameters, or through a direct call to the main function (see
+next chapters). Currently, the following options exist in the generator:</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <thead>
+  <tr>
+   <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal><span lang=EN-US>Option</span></p>
+   </td>
+   <td width=72 valign=top style='width:54.0pt;border:solid windowtext 1.0pt;
+   border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal><span lang=EN-US>Default</span></p>
+   </td>
+   <td width=439 valign=top style='width:329.2pt;border:solid windowtext 1.0pt;
+   border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal><span lang=EN-US>Description</span></p>
+   </td>
+  </tr>
+ </thead>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>shebang</span></p>
+  </td>
+  <td width=72 valign=top style='width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>nil</span></p>
+  </td>
+  <td width=439 valign=top style='width:329.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>If it is defined as a Unix file path to
+  the Lua interpreter, a Unix shebang (#!) will be added at top of the file. If
+  the path is in a Windows format (either containing backslashes or ending in </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>.exe</span><span
+  lang=EN-US>), a batch header is added to turn the script into a valid Windows
+  .BAT file.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>indentation</span></p>
+  </td>
+  <td width=72 valign=top style='width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>2</span></p>
+  </td>
+  <td width=439 valign=top style='width:329.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>If it is a number, that number of spaces
+  will be added at the start of each line for each current level. If it is a
+  string, it is replicated by the current level and placed at start of each
+  line.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>currentvar</span></p>
+  </td>
+  <td width=72 valign=top style='width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>&quot;o&quot;,</span></p>
+  </td>
+  <td width=439 valign=top style='width:329.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Current widget variable name. FLUID
+  normally uses </span><span lang=EN-US style='font-size:10.0pt;font-family:
+  "Courier New"'>o</span><span lang=EN-US> when generating C++ code. Each
+  widget is assigned to a local variable of that name, in addition to a named
+  variable if required.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>textfilter</span></p>
+  </td>
+  <td width=72 valign=top style='width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>nil</span></p>
+  </td>
+  <td width=439 valign=top style='width:329.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Internationalization text function. If
+  defined to a function name, every text label will be passed to that function.
+  If not defined, the parameter set in &quot;Edit &gt; Project Settings &gt;
+  Internationalization &gt; Use: GNU gettext &gt; Function&quot; will be used.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>check</span></p>
+  </td>
+  <td width=72 valign=top style='width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>&quot;none&quot;</span></p>
+  </td>
+  <td width=439 valign=top style='width:329.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Action to perform at the end with the generated
+  code chunk:</span></p>
+  <p class=MsoNormal style='margin-left:21.6pt;text-indent:-18.0pt'><span
+  lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN-US>&quot;syntax&quot;: the Lua syntax is checked
+  using loadstring</span></p>
+  <p class=MsoNormal style='margin-left:21.6pt;text-indent:-18.0pt'><span
+  lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN-US>&quot;run&quot;: the script is compiled and
+  run</span></p>
+  <p class=MsoNormal style='margin-left:21.6pt;text-indent:-18.0pt'><span
+  lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN-US>&quot;none&quot; or other value: do nothing</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h2><span lang=EN-US>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Run from command line </span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The general form of the command line format
+is the following:</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=Code><span lang=EN-US>murgaLua lua_from_fluid.lua [–option value ...]
+input.fl [output.lua]</span></p>
+
+<p class=Code><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The input file is the FLUID project file
+name. The output file is the file name for the generated Lua code. If the
+output file is – (a single dash), the resulting Lua code is written to standard
+output instead. If it is not specified at all, the result is thrown away; this
+is of course useless unless combined with the </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>check</span><span
+lang=EN-US> option. One or more options can be specified before the input file.
+The option name must match one of the strings of the first column of previous
+table, preceded by a dash sign; otherwise it will be silently ignored.</span></p>
+
+<h2><span lang=EN-US>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Run as a module</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>It is also possible to use the generator as
+a Lua module. First, you load the code in Lua using either using </span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>require</span><span
+lang=EN-US> or </span><span lang=EN-US style='font-size:10.0pt;font-family:
+"Courier New"'>dofile</span><span lang=EN-US>. This will export a global
+function named </span><span lang=EN-US style='font-size:10.0pt;font-family:
+"Courier New"'>LuaFromFluid</span><span lang=EN-US>, which has three arguments:
+the input file name, an optional output file name, and an optional configuration
+table. This latter, if provided, must contain the same index keys as described
+in the configuration table above, and will override the corresponding options.
+Any additional field name will be silently ignored. The function returns the
+generated code chunk as a string.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Examples:</span></p>
+
+<p class=Code><span lang=EN-US>&nbsp;</span></p>
+
+<p class=Code><span lang=EN-US>require 'lua_from_fluid'</span></p>
+
+<p class=Code><span lang=EN-US>assert(LuaFromFluid('demo.fl', 'demo.lua'),
+&quot;syntax error&quot;)</span></p>
+
+<p class=Code><span lang=EN-US>LuaFromFluid('demo.fl', nil, {check='run'})</span></p>
+
+<h2><span lang=EN-US>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Code chunks</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>It is important to note that on each place
+where FLUID permits to enter custom, you have to enter Lua code and not C++
+code. No attempt is made to convert the code from C++, except for
+&quot;Comment&quot; items. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>Sometimes, this yields to problems because
+FLUID performs a limited syntax checking on the custom code (parenthesis
+matching), and misinterprets Lua comments and the Lua 5.1 length (#) operator.
+It is recommended to patch FLUID, by returning </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>NULL</span><span lang=EN-US>
+in function </span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>c_check
+</span><span lang=EN-US>of </span><span lang=EN-US style='font-size:10.0pt;
+font-family:"Courier New"'>Fl_Function_Type.cxx</span><span lang=EN-US>. The
+hack is described at this address:</span></p>
+
+<p class=MsoNormal style='text-indent:18.0pt'><span lang=EN-US><a
+href="http://www.murga-projects.com/forum/showthread.php?tid=291">http://www.murga-projects.com/forum/showthread.php?tid=291</a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The generator expects the following type of
+code chunk depending on where it is placed:</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <thead>
+  <tr>
+   <td width=89 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+   padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal><b><span lang=EN-US>FLUID item</span></b></p>
+   </td>
+   <td width=110 valign=top style='width:82.6pt;border:solid windowtext 1.0pt;
+   border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal><b><span lang=EN-US>Field</span></b></p>
+   </td>
+   <td width=420 valign=top style='width:315.0pt;border:solid windowtext 1.0pt;
+   border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+   <p class=MsoNormal><b><span lang=EN-US>Expected code</span></b></p>
+   </td>
+  </tr>
+ </thead>
+ <tr>
+  <td width=89 rowspan=2 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Class</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>An identifier, mapped to the constructor
+  function name</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Subclass</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 rowspan=4 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Function</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>An identifier followed by parenthesizes.
+  Arguments are just a list of identifiers (without type names).</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Return type</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Access list</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Select local or global variables, as
+  described later in the Variables chapter.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>C Declaration</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Code</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Code</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Any valid Lua code chunk.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 rowspan=2 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Code Block</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Conditional</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Normally a test condition like &quot;</span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>if condition
+  then</span><span lang=EN-US>&quot;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Second line</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Ending block line. If empty, the keyword </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>end</span><span
+  lang=EN-US> is assumed.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 rowspan=2 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Declaration</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Value</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>A single identifier. Only supports
+  variable declaration.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Access list</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Selects local or global variables.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 rowspan=3 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Declaration block</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>First line</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>A constant test like &quot;</span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>if true then</span><span
+  lang=EN-US>&quot;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Second line</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Ending block line. If empty, the keyword </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>end</span><span
+  lang=EN-US> is assumed.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Header/source</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 rowspan=2 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Comment</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Code</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Any text. If C++ comment style is used (</span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>//</span><span
+  lang=EN-US>), it is converted to Lua style (</span><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New"'>--</span><span lang=EN-US>).
+  Also, </span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>--</span><span
+  lang=EN-US> is added at start of each line not beginning neither by </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>--</span><span
+  lang=EN-US> nor </span><span lang=EN-US style='font-size:10.0pt;font-family:
+  "Courier New"'>//</span><span lang=EN-US>.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Header/source</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 rowspan=10 valign=top style='width:66.8pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Any widget, <br>
+  in C++ tab</span></p>
+  </td>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Class</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>An optional identifier. If specified, the
+  widget is created by calling that function, which is supposed to be a custom
+  widget constructor, instead of the default </span><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New"'>fltk:Fl_*</span><span
+  lang=EN-US> base function.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Type list</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Changes the default widget class name.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Name</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>An optional identifier. Uses that
+  variable name for the widget in addition to the </span><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New"'>currentvar</span><span
+  lang=EN-US> option.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Access list</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Selects local or global variables.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Extra code</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Usually Lua code in the form &quot;</span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>o:fct(param)</span><span
+  lang=EN-US>&quot;. It is placed verbatim after widget construction and
+  standard methods calls.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Callback</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>If it is a single identifier, it is
+  supposed to be a global or local callback function name. <br>
+  If it is more complex, it is supposed to be the body of a callback function
+  beginning with &quot;</span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New"'>function(self)</span><span lang=EN-US>&quot; and
+  ending by &quot;</span><span lang=EN-US style='font-size:10.0pt;font-family:
+  "Courier New"'>end</span><span lang=EN-US>&quot;. The callback function is
+  placed inline, just after the widget construction, so it has full lexical
+  access to local variables. Inside it, you can refer to the original object
+  either with </span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>self</span><span
+  lang=EN-US>, with </span><span lang=EN-US style='font-size:10.0pt;font-family:
+  "Courier New"'>o</span><span lang=EN-US> or with the optional widget name.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>User data</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Type</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><i><span lang=EN-US>Ignored</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>When</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Calls the </span><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New"'>when</span><span
+  lang=EN-US> method with the proper value</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=110 valign=top style='width:82.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>No change</span></p>
+  </td>
+  <td width=420 valign=top style='width:315.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Changes the value passed to </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>when</span><span
+  lang=EN-US> method</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h2><span lang=EN-US>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Classes</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The FLUID notion of &quot;class&quot; can
+be relatively well translated in Lua using a table with a metatable. The class
+will be rendered as a constructor function, of the same name as the class name.
+The constructor function creates a table in which every member function or
+variable is put, and returns that table. It takes an optional table argument as
+input. Every key-value pair of that table is copied into the new object,
+enabling initialization or copy features. The main trick in the implementation
+is that a metatable is mapped to the object, and the current function
+environment is modified inside the constructor function, so that new global
+variables are written inside the object table, and global variables are read
+either from the object or the really global environment _G. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>Outside the constructor function, you can
+access to the public methods or variables using the dot (.) operator. Do <i>not</i>
+use the colon (:) operator for member calls, because member functions already
+have full access to their class instantiation as an upvalue.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>If a member function has exactly the same
+name as the class function, it will be renamed </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>__constructor</span><span
+lang=EN-US> in the generated code and automatically called at the end of the
+class definition function. This mimics the behavior of a C++ constructor
+function. </span></p>
+
+<p class=MsoNormal><span lang=EN-US>Unlike in the FLUID generated C++ code </span><span
+lang=EN-US style='font-family:Wingdings'>J</span><span lang=EN-US>, classes
+defined inside classes are supported by the generator. This will be simply
+rendered as a constructor member function inside the constructor function.</span></p>
+
+<h2><span lang=EN-US>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Widget classes</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>With FLUID, you can create new complex
+widgets by placing a number of base widgets into a group, and adding member
+functions. This is done with a widget class item. The Lua emulation of a widget
+class is quite complex. It is rendered as a constructor function taking as
+input arguments the same ones as any widget: X, Y, W, H and label. A base
+widget (normally an </span><span lang=EN-US style='font-size:10.0pt;font-family:
+"Courier New"'>Fl_Group</span><span lang=EN-US> or </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>Fl_Window</span><span
+lang=EN-US>) is instantiated using these parameters, resulting in a userdatum.
+The metatable of this userdatum is modified so that indexing the value for
+unknown fields put the data into a helper table, placed into a subfield of the
+metatable. Also, the current function environment is modified in the same way
+as for regular classes.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>You can access any public member using the
+dot (.) operator, including for member function calls. However, for
+compatibility with other widgets, each member function is patched to accept
+both the dot and the colon notations (by testing if the first argument matches
+the base widget variable). </span></p>
+
+<p class=MsoNormal><span lang=EN-US>To use the widget class, you create a
+regular group or window item in another window and then change the Class field
+in the C++ property tab to match your custom widget class name.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Normally, in FLTK, all positions are
+relative to the current window, and not relative to the current group. Because
+you normally want that the custom widget to behave the same wherever you place
+it in the user window, the widgets used in a custom </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>Fl_Group</span><span
+lang=EN-US> based widget are automatically shifted by the position of the
+group. This shift feature is not supported in FLUID generated C++ code.</span></p>
+
+<h2><span lang=EN-US>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Variables</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>Each widget created is placed into a local
+variable named </span><span lang=EN-US style='font-size:10.0pt;font-family:
+"Courier New"'>o</span><span lang=EN-US>, or whatever you set the option </span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>currentvar</span><span
+lang=EN-US> to. The default name is used for setting object parameters, and can
+be used in &quot;Extra Code&quot; or &quot;Callback&quot; properties. In
+addition, if you give a value in the &quot;Name&quot; property, the value is
+copied into a larger scope variable. How the variable is declared depends
+whether the current function is a regular function or a class member, and the
+value of the access property:</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-indent:-18.0pt'><span
+lang=EN-US>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Regular function: </span></p>
+
+<p class=MsoNormal style='margin-left:75.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US>global</span></b><span lang=EN-US>: the
+variable is global (a field in the </span><span lang=EN-US style='font-size:
+10.0pt;font-family:"Courier New"'>_G</span><span lang=EN-US> table)</span></p>
+
+<p class=MsoNormal style='margin-left:75.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US>local</span></b><span lang=EN-US>: the
+variable is declared as local at the top of generating file. It can be accessed
+by every code chunk of the FLUID project as an upvalue, but is inaccessible for
+other modules</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-indent:-18.0pt'><span
+lang=EN-US>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US> Class member function:</span></p>
+
+<p class=MsoNormal style='margin-left:75.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US>public</span></b><span lang=EN-US>: the variable
+is not declared local. The environment of the construction function is modified
+to the new object itself with an inheritance to the global environment. Inside
+the class definition, it is enough to access the value as if it was a global
+variable. From outside, you can also access the value by indexing the object
+with the variable name.</span></p>
+
+<p class=MsoNormal style='margin-left:75.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US>protected</span></b><span lang=EN-US>: the
+variable is declared as local at top of the class definition. It can then be
+accessed as an upvalue throughout the class implementation, including inline
+callbacks. It is inaccessible to the outside world and even to external
+callback functions.</span></p>
+
+<p class=MsoNormal style='margin-left:75.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US>private</span></b><span lang=EN-US>: currently
+the same as protected.</span></p>
+
+<h2><span lang=EN-US>9.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Internationalization and text filtering</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>In &quot;Edit &gt; Project Settings &gt;
+Internationalization&quot; property page, if you use &quot;GNU gettext&quot;,
+you can choose a function name. This name is used as a text filtering function
+called on every label item. The function can for example make a table lookup to
+implement translation, like in the following example:</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=Code><span lang=EN-US>function gettext(text)</span></p>
+
+<p class=Code><span lang=EN-US>  return text_strings[current_language][text] or
+text</span></p>
+
+<p class=Code><span lang=EN-US>end</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>You can also use the same mechanism to
+implement text filtering or macro expansion, like for example replacing
+&quot;$USER&quot; in labels with the login name of the current user.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>The function name can also be forced by
+setting the </span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>textfilter</span><span
+lang=EN-US> option.</span></p>
+
+<h2><span lang=EN-US>10.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Main chunk</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>At the end of the generated script, a small
+piece of Lua code might be added as the main chunk, in order to run the
+program, depending on whether or not specific function names are defined:</span></p>
+
+<p class=MsoNormal style='margin-left:45.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>If a regular function (not a member function)
+named </span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>main</span><span
+lang=EN-US> is defined, it will be called by passing to it all script
+arguments, using the &quot;…&quot; Lua 5.1 notation.</span></p>
+
+<p class=MsoNormal style='margin-left:45.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>If a regular function named </span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>make_window</span><span
+lang=EN-US> (the default function name under FLUID), the function will be
+called without arguments. The </span><span lang=EN-US style='font-size:10.0pt;
+font-family:"Courier New"'>show</span><span lang=EN-US>() method will then be
+called on all return values, which are supposed to be </span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>Fl_Window</span><span
+lang=EN-US> objects. Finally, </span><span lang=EN-US style='font-size:10.0pt;
+font-family:"Courier New"'>Fl:run</span><span lang=EN-US> is called to open the
+application.</span></p>
+
+<p class=MsoNormal style='margin-left:45.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>If no such a function exists, no main chunk is
+generated. In this case, we suppose that the generated Lua script is part of a
+larger project, which will be loaded and run through external code.</span></p>
+
+<h2><span lang=EN-US>11.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>License</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>The code has been placed under the MIT
+license, the same used by Lua itself.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

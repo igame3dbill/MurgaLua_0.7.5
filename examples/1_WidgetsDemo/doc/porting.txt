@@ -1,0 +1,28 @@
+Lua and FLTK developers take pride in the fact that both tools
+work and look pretty much the same regardless of which operating
+system is being used.
+
+However, there are some rather annoying exceptions to this, and
+I hope to give an explanation for most of these exceptions here
+in this file.
+
+A highly  visible difference between Windows and Linux/Unix based
+systems (including Mac OS X) is the Windows  use of backslash to
+separate directories in a file path. Depending on how your script
+was written, this issue could easily cause the program to fail.
+There may be better ways to attack this problem, but one way is
+to use a variable as your separator:
+
+if murgaLua.getHostOsName() == "windows" then SEP="\\" else SEP="/" end
+
+After this, use "SEP" wherever you would normally use a slash or backslash
+in local path names.
+
+Environment variables can be an issue. Individual users can set whatever
+variables they like, of course, but default variables often vary from
+one system to another, particularly when comparing Windows with POSIX,
+or even Windows NT/2000/XP with Windows 9x/ME. One solution could be
+to check for every possible Windows version, but a better solution
+might be to avoid most environment variables if you are coding for
+Windows or for multiple platforms.
+

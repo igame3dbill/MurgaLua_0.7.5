@@ -1,0 +1,11 @@
+
+Create a colored chart to display relative values:
+
+my_chart=fltk:Fl_Chart(x-position,y-position,width,height,label)
+my_chart:add(item_number,item_label,color) -- add a value
+
+The visual size of each item will always be relative to the
+total number of items and to the dimensions of the chart.
+For example, a pie chart will always figure that the degrees
+of the arcs of all items will add up to 360. When an item is
+added, the scale of all others will decrease.

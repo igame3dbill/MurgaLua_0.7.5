@@ -1,0 +1,6 @@
+
+Fl_Tile is a group in which you add widgets that can be resized
+vertically and horizontally by dragging the borders between them.
+
+I have not done anything with tiles other than this one example,
+so I'm sorry I don't know much about their use.

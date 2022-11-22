@@ -1,0 +1,12 @@
+
+Taking a new direction, this test is an attempt to reposition
+the dots offscreen once they reach the cursor, as a way to
+eliminate the apparent chaos of the previous two tests.
+
+Somewhere along the way, the variance in gravitational pull
+seems to have been lost or severely diminished, but it
+becomes more cosmic. Groovy.
+
+Since the dots are repositioned just offscreen, they end up
+coming in from four distinct lines. Future tests will prove
+to become more organic.

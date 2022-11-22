@@ -1,0 +1,29 @@
+
+A display of fonts that are available by default in murgaLua,
+and should work on any supported platform.
+
+These fonts can be set by either number or constant:
+
+0  = fltk.FL_HELVETICA
+1  = fltk.FL_HELVETICA_BOLD
+2  = fltk.FL_HELVETICA_ITALIC
+3  = fltk.FL_HELVETICA_BOLD_ITALIC
+4  = fltk.FL_COURIER
+5  = fltk.FL_COURIER_BOLD
+6  = fltk.FL_COURIER_ITALIC
+7  = fltk.FL_COURIER_BOLD_ITALIC
+8  = fltk.FL_TIMES
+9  = fltk.FL_TIMES_BOLD
+10 = fltk.FL_TIMES_ITALIC
+11 = fltk.FL_TIMES_BOLD_ITALIC
+12 = fltk.FL_SYMBOL
+13 = fltk.FL_SCREEN
+14 = fltk.FL_SCREEN_BOLD
+15 = fltk.FL_ZAPF_DINGBATS
+
+All widgets (as far as I know) use the labelfont() method to set
+the font for their labels. Text display areas such as inputs and
+browsers also use the textfont() method for the text field.
+
+See the fonts-system info for details about font scaling
+issues in non-Xft Linux systems.

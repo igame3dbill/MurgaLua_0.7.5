@@ -1,0 +1,107 @@
+Changelog for murgaLua widgets demo
+yyyy-mm-dd
+
+2009-05-30: Quick hacks by John Murga
+	* Enable demos to run from MSys shell (where POpen doesn't work).
+	* Added batch file for easy running from Windows
+	* Took out "#!/usr/*" from scripts that where broken because of it.
+	
+2008-04-07:
+	* Dropped support for murgaLua below 0.6
+	* File list split into collapsible sections
+	* Returned the ability to set a global scheme
+	* Returned the external editor
+	* Made columns resizable
+	* Better keyboard control
+	* Code cleanup
+	* Name change from widgets demo to murgaLua demos
+	* Fixed "show demo" button to not collapse browser on click
+	* Fixed save button crash on main code (disabled the button)
+	* Fixed potato drop mouse click test for Windows
+	* Fixed xpm_file.xpm transparency in Windows
+	* Images dir and scheme now included with demo scripts
+	* Updated the Lua manual
+	* Added examples:
+	   button roll-over, FLU emulation
+	   Flu_Choice_Group, FLU emulation
+	   collapsible browser
+	   LCD-style number display
+	   simple Lua module
+
+2008-03-02:
+	* Beta3b released (bugfix)
+	* Fixed the Windows quote bug preventing demos from running
+	* Added "What's New" page
+	* Added "save as png" button to freehand draw
+	* Added examples:
+	   potato drop test
+
+2008-02-27:
+	* Beta 3 released
+	* Complete redesign of the UI, inspired by gtk-demo
+	* Got the preview working in 0.5.5 again (still needs fixing in Windows)
+	* Included missing info files
+	* Fixed labeltype demo to work with 0.5.5 again
+	* Converted snippets.txt to html for cleaner display
+	* Renamed some demos for better grouping of similar widgets
+	* Added examples:
+	   menuExample (modification of John's demo)
+	   gravity7 (fullscreen version)
+	   schemes
+
+2008-02-02:
+	* Minor code cleanup
+	* Fixed (apparently) notes menu item [de]activation
+
+2008-02-01:
+	* Beta 2 released
+	* Fixed edit preview to use needed global variables
+	* Preview runs in a separate process (requires murgaLua 0.6+)
+	* Some README updates
+	* Added examples:
+	   sliding tiles
+	   more gravity tests
+
+2008-01-22:
+	* Beta 1 released
+	* Fixed draw loop segfault when viewing notes
+	* Added some features to Fl_File_Browser
+	* Added support for external code viewer
+	* Fixed the labeltypes widget (requires murgaLua 0.6+)
+	* Fixed boxtypes to display properly in both 0.5 and 0.6
+	* Removed some old/broken scripts
+	* Added examples:
+	   Fl_File_Icon (added to main script)
+	   positioner
+	   box types
+	   marquee
+	   embedded XPM (murgaLua 0.6+)
+	   draggable box
+	   gravity tests
+
+2007-09-11:
+	* Alpha 2 released
+	* Removed dropdown menu from align.lua
+	* A few minor changes for easier keyboard control
+	* Added notes for various widgets
+	* Fixed some filename path issues for Windows
+	* Added some image manipulation to image widgets
+	* Added examples:
+	    system fonts
+	    curve drawing
+	    freehand drawing
+	    line drawing
+	    secret input
+	    scroll
+	    progress bar
+	    PNG image
+	    PNM image
+	    label symbols
+	    cursors
+	    fl_dir_chooser
+	    window
+	    radio buttons
+	    tooltips
+2007-08-18:
+	* Alpha 1 released
+

@@ -1,0 +1,12 @@
+
+I think this widget could have been designed better.
+A dial is a handy thing, but the interaction with this particular
+widget requires two changes in mouse direction in order to drag
+from minimum to maximum values. Ideally I would think a dial should
+be controlled with a single drag: Up or Right to increase, and
+Down or Left to decrease. The only way I know how to accomplish
+a smooth drag is by setting angles(90,270), as shown with the fill
+dial, but then you have visual use of only half the dial. Say liver.
+
+This dial could be useful as a read-only output, though, such as
+a visual representation of a pressure gauge.

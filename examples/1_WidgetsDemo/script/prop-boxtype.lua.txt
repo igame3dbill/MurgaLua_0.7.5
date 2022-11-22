@@ -1,0 +1,36 @@
+
+Various shapes and styles for your buttons.
+
+Although there is a kind of order in the table of buttons
+in the script, Lua has a habit of making up its own order
+of traversing non-numeric tables that, while it probably
+has some logic behind it, results in a seemingly random
+order in the display of its contents.
+
+The "UP" state of these box types apparently causes a
+button to also inherit the "DOWN" state of the same
+box type. You can see this when clicking on the example
+buttons; the up state will change to down when clicked,
+but the buttons already in a down state do not change.
+
+IMPORTANT NOTES:
+
+One or more of the following functions must run before the
+associated boxtype(s) can be applied to an arbitrary widget:
+
+fltk.fl_define_FL_PLASTIC_UP_BOX()
+fltk.fl_define_FL_OVAL_BOX()
+fltk.fl_define_FL_RFLAT_BOX()
+fltk.fl_define_FL_SHADOW_BOX()
+fltk.fl_define_FL_ROUND_UP_BOX()
+fltk.fl_define_FL_RSHADOW_BOX()
+fltk.fl_define_FL_DIAMOND_BOX()
+fltk.fl_define_FL_ROUNDED_BOX()
+fltk.fl_define_FL_GTK_UP_BOX()
+
+Boxtypes not associated with the above constants, such as
+FL_THIN_UP_BOX or FL_BORDER_FRAME, do not need a special
+function to define them.  Using one of the built-in FLTK
+schemes apparently runs the needed function for that scheme,
+saving you from needing to run it yourself.
+

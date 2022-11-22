@@ -1,0 +1,7 @@
+
+fl_input is a FLTK function that opens a window into which you
+can type a string.  It returns the string, or nil if cancelled.
+
+fltk.fl_intput(prompt_text,initial_input_text)
+
+The initial text can be nil

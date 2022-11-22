@@ -1,0 +1,10 @@
+
+Fl_Wizard provides a group of panes just like Fl_Tabs, but without
+the actual tabs. Navigation is done purely through programming,
+which makes creation more complicated but allows for greater
+flexibility. You can use the wizard with buttons as this example
+does, or you could have the panes switch with some other action,
+such as a key press, or when a timer runs out, or when the mouse
+enters a certain coordinate, or when a group of objects are placed
+in just the right positions. I'm sure there are many ways to use
+this group that just wouldn't be appropriate with tabs.

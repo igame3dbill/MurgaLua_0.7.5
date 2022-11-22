@@ -1,0 +1,7 @@
+
+This is an extremely basic way to draw freehand lines, with very little
+control. The script merely follows the mouse drag and draws a tiny line
+100 times per second. I'm sure this could be improved drastically, but
+my desire was simply to find a way to create user-controlled dynamic
+shapes without making a complex script.
+

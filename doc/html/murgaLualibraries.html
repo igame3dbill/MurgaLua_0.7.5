@@ -1,0 +1,265 @@
+﻿<html>
+	
+<head>
+	<title>murgaLua libraries</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript"><!--
+		var sTopicId = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+		if (top.frames.length == 0)
+			top.location.href = "index.html?" + sTopicId
+		else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			top.FrameTOC.SelectTocItem(sTopicId);
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>murgaLua libraries</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Reference.html">Reference</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Reference.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Reference.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p><span class="rvts6">XML functionality</span></p>
+<p><span class="rvts6">saveToXml( fileName, variableName )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">local table_1 = {firstVar=1; secondVar=2; thirdVar="abc"}</span></p>
+<p><span class="rvts6">local myVar = "This is a string"</span></p>
+<p><span class="rvts6">local table_2 = {myVar, "Test String", true, table_1}</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">local myTable = {firstKey="simpleItem"; secondKey=table_2}</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">murgaLua.saveToXml("foo.xml", myTable)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">As we see in the example we have defined a series of data structures and wrapped a table around them ...</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">And the function allows you to save all this data to a human readable XML file.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">loadFromXml( fileName )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">local loadedTable = murgaLua.loadFromXml("foo.xml")</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Returns a table will all the data just like we saved it before.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">importXmlFile( fileName )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">local xmlTable = murgaLua.importXmlFile("test.xml")</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">print( "Root Element Name : " .. xmlTable[1].name )</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Loads and parses any valid XML file (see xmlImport.lua test). </span></p>
+<p><span class="rvts6">importXmlString( fileName )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">local xmlTable = murgaLua.importXmlString("&lt;test height=2&gt;text&lt;/test&gt;")</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">print( "Element Name &nbsp; &nbsp; : " .. xmlTable[1].name )</span></p>
+<p><span class="rvts6">print( "Element contents : " .. xmlTable[1][1])</span></p>
+<p><span class="rvts6">print( "Attribute Name &nbsp; : " .. next(xmlTable[1].attr))</span></p>
+<p><span class="rvts6">print( "Attribute Value &nbsp;: " .. xmlTable[1].attr[next(xmlTable[1].attr)])</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Loads and parses any valid XML file (see xmlImport.lua test).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">exportXml( xmlTable, fileHandle )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">diskfile = io.open("test.xml", "w")</span></p>
+<p><span class="rvts6">murgaLua.exportXml(xmlTable, diskfile)</span></p>
+<p><span class="rvts6">diskfile:close()</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Saves the structure created by importXml* ... This has to be better documented (see xmlImport.lua test).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">exportXml( xmlTable, fileHandle )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">diskfile = io.open("test.xml", "w")</span></p>
+<p><span class="rvts6">murgaLua.exportXml(xmlTable, diskfile)</span></p>
+<p><span class="rvts6">diskfile:close()</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Saves the structure created by importXml* ... This has to be better documented (see xmlImport.lua test).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">findXmlNode( xmlTable, pathToNode )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">subStruct = murgaLua.findXmlNode(xmlTable, "/example/subStruct")</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Allows you to search for the part of the XML table that you are interested in (see xmlImport.lua test).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">findNextXmlNode( xmlTable, pathToNode )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">subStruct = murgaLua.findXmlNode(xmlTable, "/example/subStruct")</span></p>
+<p><span class="rvts6">repeatingNode = murgaLua.findNextXmlNode(subStruct, "repeatingNode")</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Allows you to get nodes that repeat inside an XML structure (see xmlImport.lua test).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Utility functions</span></p>
+<p><span class="rvts6">These functions are included to ease debugging and make filtering tables a little easier.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">getHostOsName()</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">murgaLua.getHostOsName()</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Returns the OS murgaLua was build for, currently one of "linux", "windows" or "macos".</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">sleep(miliseconds)</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">murgaLua.sleep(1000)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Sleeps for the specified number of miliseconds without taxing the system.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">newIoString()</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">function write_squares_table(file)</span></p>
+<p><span class="rvts6"> &nbsp;for i = 1,10 do</span></p>
+<p><span class="rvts6"> &nbsp; &nbsp;file:write(i, " ", i*i, "\n")</span></p>
+<p><span class="rvts6"> &nbsp;end</span></p>
+<p><span class="rvts6">end</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">-- write to file:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">diskfile = io.open("squares", "w")</span></p>
+<p><span class="rvts6">write_squares_table(diskfile)</span></p>
+<p><span class="rvts6">diskfile:close()</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">-- write to string:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">stringfile = murgaLua.newIoString()</span></p>
+<p><span class="rvts6">write_squares_table(stringfile)</span></p>
+<p><span class="rvts6">print(stringfile:getstring())</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Creates a new iostring - need to document more (see xmlImport.lua test).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">createFltkTimer()</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">timer = murgaLua.createFltkTimer()</span></p>
+<p><span class="rvts6">timer:callback(sleep_callback)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Allows you to do neat timing tricks on FLTK (needs more documentaion), (see timerTest).</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">printTable( table, indentLevel )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">murgaLua.debug.printTable(myTable)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Will navigate the whole table and print ALL of it's contents, which can be pretty useful for debug purposes.</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">filterTable( path )</span></p>
+<p><span class="rvts6">Usage:</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">copyTable = murgaLua.filterTable (myTable, function)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Returns a table containing the data for which the function returns "true" :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">myTable =</span></p>
+<p><span class="rvts6">{</span></p>
+<p><span class="rvts6">bob = { age = 22, sex = "male", surname = "Smith" },</span></p>
+<p><span class="rvts6">tracy = { age = 25, sex = "female", surname = "Smith" },</span></p>
+<p><span class="rvts6">john = { age = 32, sex = "male", surname = "Murga" },</span></p>
+<p><span class="rvts6">}</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">copyTable = murgaLua.filterTable (myTable, function (myValue) return myValue.surname == "Smith" end)</span></p>
+<p><span class="rvts6">murgaLua.debug.printTable(myTable)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">The output of which would be :</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">[tracy] =&gt; table</span></p>
+<p><span class="rvts6">(</span></p>
+<p><span class="rvts6">[surname] =&gt; Smith</span></p>
+<p><span class="rvts6">[age] =&gt; 25</span></p>
+<p><span class="rvts6">[sex] =&gt; female</span></p>
+<p><span class="rvts6">)</span></p>
+<p><span class="rvts6">[bob] =&gt; table</span></p>
+<p><span class="rvts6">(</span></p>
+<p><span class="rvts6">[surname] =&gt; Smith</span></p>
+<p><span class="rvts6">[age] =&gt; 22</span></p>
+<p><span class="rvts6">[sex] =&gt; male</span></p>
+<p><span class="rvts6">)</span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6"><br></span></p>
+<p><span class="rvts6">Courtesy of our other new function debug.printTable (see murgaLuaLib.lua example).</span></p>
+<p><span class="rvts6"><br></span></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2006-12 John de Murga</div>
+		</div>
+	</body>
+	
+</html>
+

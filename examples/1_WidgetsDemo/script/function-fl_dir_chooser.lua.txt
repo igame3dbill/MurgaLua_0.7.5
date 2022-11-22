@@ -1,0 +1,12 @@
+
+fl_dir_chooser is a FLTK function which shows a file browser
+window specifically intended for choosing a directory.
+
+fltk.fl_dir_chooser(title,start_path,relative)
+
+"relative" is a toggle. Non-zero means the filename returned will be a
+path relative to your current location, and zero returns absolute path.
+
+Using nil as start path will default to the previously chosen path,
+or current directory if this is the first time the function is called
+

@@ -1,0 +1,19 @@
+
+The cursor() method is used by a window widget to set
+the cursor while it is over that particular window.
+Trying to use this method for another widget type,
+such as a button, will result in program failure.
+
+Apparently this method works only if it is called
+after the target window is shown.
+
+Considering the amount of coordinate checking needed to
+keep track of which cursor to set where, and the fact that
+most desktop environments and window managers already do
+a sufficent job of dealing with cursors, I honestly can't
+think of many situations where this feature would be worth
+adding to an application. It is provided here as an example
+anyway, just to show it's available.
+
+The reset button (Alt+r) is there just in case the user
+choses FL_CURSOR_NONE and can't find the cursor location.

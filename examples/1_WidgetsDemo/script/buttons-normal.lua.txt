@@ -1,0 +1,22 @@
+
+fltk:Fl_Button(x_position,y_position,width,height,"label")
+
+The selection_color method can be used to change the color of
+the "hot spot" of buttons. For round/radio and check buttons
+it is the dot or check mark. For light buttons it is the light.
+For all other buttons it is the whole button in its down state.
+selection_color can be replaced with color2 or down_color to
+achieve the same effect.
+
+The box types shown in the boxtypes example can be applied to
+buttons or (nearly?) any other FLTK widget. The box type for
+the hot spot of the special buttons, such as the light button,
+can be changed by applying these box types to the down_box.
+
+Keyboard control:
+Tab and Shift+Tab are used to navigate forward and backward through
+visible widgets. If Fl:visible_focus() has not been set to 0, the
+active widget is surrounded by dashed lines, representing focus.
+Fl_Return_Button can be activated with the Return key, regardless
+of whether or not it has focus. All others can be activated with
+the spacebar when the button has focus. 

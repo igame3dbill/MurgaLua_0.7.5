@@ -1,0 +1,23 @@
+
+Here's a basic test of loading a Lua module into murgaLua.
+This module is a very limited script that adds one function
+and one string to the "string" package.
+
+Lua modules are found in the paths listed in packages.path,
+or the environment variable LUA_PATH. In this demo, the "module"
+directory was added to packages.path in order to keep the Lua
+module as part of this portable demos package:
+package.path=[[murgaLua_demos/module/?.lua;]]..package.path
+The square brackets seem to be necessary in Windows, as the
+backslash used as a directory separator is seen by Lua as
+an escape character when used within single or double quotes.
+
+A module is loaded with the command: require "packagename", where
+packagename is the filename minus the ".lua" suffix. This file
+contains the line: module ("packagename", package.seeall)
+The module here uses "string" in order to include it as part of
+the existing string package.
+
+
+The module file itself is shown below:
+

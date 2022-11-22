@@ -1,0 +1,8 @@
+
+Here's a simple way, although probably inefficient, to create
+a roll-over effect when interacting with a button.
+
+This particular example uses a murgaLua timer loop to check
+whether or not the cursor is over the button. I'm guessing
+this is probably far from ideal, but so far I don't see any
+way for a button itself to detect a roll-over.

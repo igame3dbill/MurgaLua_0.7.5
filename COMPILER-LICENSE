@@ -1,0 +1,20 @@
+Changes to the license for the murgaLua compiler
+================================================
+
+Even although I don't tell you how to license your own code there are a
+couple of things you should know before using the murgaLua compiler.
+
+To fit into the philosophy behind murgaLua you may not encrypt, obfuscate
+or otherwise further restrict the accessibility of code compiled within
+applications produced by the murgaLua compiler.
+
+The murgaLua compiler is provided as a mechanism to professionally package
+and deploy your scripts to certain environments, not as a way to protect
+the secrets of how your code works.
+
+Your code will of course remain hidden from the average user, however a
+user familiar with the murgaLua environment and it's inner workings will
+always be able to de-compile the executable.
+
+Cheers
+John de Murga

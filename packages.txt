@@ -1,0 +1,1 @@
+apt-get install tcl patch make g++ libx11-dev libxpm-dev x11proto-xext-dev libxext-dev libreadline5-dev libasound2-dev libxft-dev

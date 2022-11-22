@@ -1,0 +1,126 @@
+<HTML>
+  <BODY>
+    <HR break>
+    <H2><A name="Fl_Tree">class Fl_Tree</A></H2>
+    <HR>
+
+    <H3>Class Hierarchy</H3>
+    <UL>
+<PRE>
+<A href="Fl_Widget.html#Fl_Widget">Fl_Widget</A>
+   |
+   +----<B>Fl_Tree</B>
+        |
+	+----<A href="Fl_ToggleTree.html#Fl_ToggleTree">Fl_Toggle_Tree</A>
+</PRE>
+    </UL>
+    <H3>Include Files</H3>
+    <UL>
+<PRE>
+#include &lt;FL/Fl_Tree.H&gt;
+</PRE>
+    </UL>
+
+
+    <H3>Description</H3>
+    <P>This is the base class for Fl_Toggle_Tree.  It could conceivably be
+      used to create other tree-like widgets.
+    <P>This class has been designed to maintain a doubly linked tree list, and 
+      defers data storage and management to subclasses of Fl_Tree and Fl_Node.
+      This class also maintains wether it's branches are visible or not
+      (i.e. "opened" or "closed").
+
+
+    <H3>Methods</H3>
+    <CENTER>
+      <TABLE width="90%">
+	<TR><TD align=left valign=top>
+	    <LI><A href="#Fl_Tree.Fl_Tree">Fl_Tree</A></LI>
+	    <LI><A href="#Fl_Tree.add_next">add_next</A></LI>
+	    <LI><A href="#Fl_Tree.add_sub">add_sub</A></LI>
+	    <LI><A href="#Fl_Tree.clear">clear</A></LI>
+	    <LI><A href="#Fl_Tree.close">close</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_Tree.draw">draw</A></LI>
+	    <LI><A href="#Fl_Tree.remove">remove</A></LI>
+	    <LI><A href="#Fl_Tree.first">first</A></LI>
+	    <LI><A href="#Fl_Tree.open">open</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_Tree.traverse_start">traverse_start</A></LI>
+	    <LI><A href="#Fl_Tree.traverse_forward">traverse_forward</A></LI>
+	    <LI><A href="#Fl_Tree.traverse_up">traverse_up</A></LI>
+	    <LI><A href="#Fl_Tree.update_height">update_height</A></LI>
+	  </TD>
+	</TR>
+      </TABLE>
+    </CENTER>
+
+
+    <H4><A name="Fl_Tree.Fl_Tree">Fl_Tree::Fl_Tree(int x, int y, int w, int h)</A></H4>
+    <P>The constructor makes an empty Fl_Tree.
+
+
+    <H4><A name="Fl_Tree.add_next">void Fl_Tree::add_next(Fl_Node *n)</A></H4>
+    <P>Insert n as the next item after current node. 
+
+
+    <H4><A name="Fl_Tree.add_sub">void Fl_Tree::add_sub(Fl_Node *n)</A></H4>
+    <P>Insert n as the next sub item after the current node. 
+
+
+    <H4><A name="Fl_Tree.clear">void Fl_Tree::clear()</A></H4>
+    <P>Clear the tree.
+
+    <H4><A name="Fl_Tree.close">void Fl_Tree::close(Fl_Node *n)</A></H4>
+    <P>Set node n as "closed".
+
+
+    <H4><A name="Fl_Tree.draw">virtual void Fl_Tree::draw()</A></H4>
+    <P>Virtual method that draws the tree.
+
+
+    <H4><A name="Fl_Tree.remove">int Fl_Tree::remove(Fl_Node *n)</A></H4>
+    <P>Remove n (and all of it's sub nodes) from the tree.  If successful returns 
+      1, else returns 0.
+
+
+    <H4><A name="Fl_Tree.first">Fl_Node* Fl_Tree::first()</A></H4>
+    <P>Returns the first (top) <a href="Fl_Node.html">Fl_Node</a> in the widget tree.
+
+
+    <H4><A name="Fl_Tree.open">void Fl_Tree::open(Fl_Node *n)</A></H4>
+    <P>Set node n as "open".
+
+
+    <H4><A name="Fl_Tree.traverse_start">void Fl_Tree::traverse_start(Fl_Node* t)<BR>
+	Fl_Node* Fl_Tree::traverse_start()</A></H4>
+    <P>The first form of this method sets the current pointer to t.  The second
+      form of this method, sets the traversal pointer to <TT>first()</TT> and
+      then returns first().  The second form is provided for convenience.
+
+
+    <H4><A name="Fl_Tree.traverse_forward">Fl_Node* Fl_Tree::traverse_forward(int visible, int &depth)<BR>
+	Fl_Node* Fl_Tree::traverse_forward()</A></H4>
+    <P>This method traverses forward through the tree.  Traversal through 
+      the node tree is done by a depth first traversal that updates the 
+      current node pointer.  If traverse_forward returns 0, then the 
+      current node pointer has reached the end of the tree.  Otherwise, 
+      traverse_forward returns the next node in the tree.
+    <P>The visible flag should be set to 1 if you want to restrict 
+      traversal to the visible tree (the Fl_Nodes that are not closed).  The 
+      depth variable is updated with the new node depth, if the old node depth 
+      is passed to traverse_forward.
+    <P>The second form of the method is the same as 
+      <TT>traverse_forward(0, temp)</TT>.
+
+
+    <H4><A name="Fl_Tree.traverse_up">Fl_Node* Fl_Tree::traverse_up()</A></H4>
+    <P>If the current node has an up pointer, traverse_up returns this 
+      pointer and sets it as the current node.
+
+
+    <H4><A name="Fl_Tree.update_height">void Fl_Tree::update_height()</A></H4>
+    <P>Update the height of the tree.
+
+  </BODY>
+</HTML>

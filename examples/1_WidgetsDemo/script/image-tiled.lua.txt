@@ -1,0 +1,13 @@
+
+fltk:Fl_Tiled_Image(image_name,width,height)
+fltk:Fl_Tiled_Image(fltk.Fl_XPM_Image("filename.xpm"),width,height)
+
+image_name is any name given to an image that has been loaded with,
+for example, Fl_JPEG_Image() or Fl_Shared_Image.get().
+
+width and height are the dimensions of the area on which the image
+is to be tiled, and not the dimensions of the image itself.
+
+Note there is no Fl_JPEG_Image example listed in the menu.
+The Fl_Tiled_Image example already makes use of this class, and there
+really isn't anything else to say about it.

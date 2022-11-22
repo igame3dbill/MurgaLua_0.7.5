@@ -1,0 +1,6 @@
+
+This isn't an actual FLTK built-in widget, but just a small example
+of one of the groovy things you can build by combining Lua and FLTK.
+
+This example was inspired by the anilabel.tcl demo supplied with
+the Tcl/Tk distribution.

@@ -1,0 +1,23 @@
+          MurgaLua FANN example:
+
+           Language classifier.
+
+
+Based on the paper on the FANN website (http://fann.sf.net/fann_en.pdf).
+
+Description
+-----------
+
+These scripts classify a chunk of text into one of 3 languages based on the relative frequencies of the letters.
+It takes some samples, trains a neural network on the letter frequencies represented in them, and chucks out the probabilities for the 3 considered languages.
+
+Usage: 
+-------
+ * Unpack the zip containing this file (Probably done already)
+ * Run murgaLua frequencies.lua to generate the relative letter frequencies in each sample file (saved to train.data).
+ * Run murgaLua train.lua to train a new neural network (and save it to language_clas.net)
+ * Run murgaLua classLang.lua samp1.txt to determine which language the sample text could be
+
+Credits go to ME :) (only for the Lua-ification of the code)
+Do whatever you want with it, but don't blame me if it eats your dog
+Jan-Pieter Jacobs 2010.

@@ -1,0 +1,16 @@
+
+X Bitmap images (black and white)
+
+Notice the line below was commented out from the script:
+xbm_box:image(fltk:Fl_XBM_Image(demo_images.."xbm_image.xbm"))
+
+The result of this command is essentially the same as the longer
+version that was used instead, but it limits what you can do with
+the original image data, as there is no named pointer to the image.
+In the case of coloring XBM images, as is done in this example,
+the pointer is not needed because the bitmap's color is inherited
+from the widget's label color. If it were necessary to manipulate
+the image data with one or more of the Fl_Image methods, it would
+require a pointer: my_image=fltk:Fl_XBM_Image("xbm_image.xbm")
+After that, you can use my_image:w(), for example, to return the
+width of the XBM image.

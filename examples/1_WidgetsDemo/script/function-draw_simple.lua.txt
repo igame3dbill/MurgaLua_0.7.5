@@ -1,0 +1,14 @@
+
+This began as a modification of John Murga's draw4.lua example.
+
+The filled quadrangle will not always be filled. This is a result of
+using random placement for its points, which will often result in a
+"twisted" polygon. However, it is recommended that polygons always be
+convex. At this time I am unsure if it will break on some platforms.
+
+There are many "math.random()" commands included here. This is just
+an easy way to create objects of various size, shape, and position
+rather than needing to construct a complex formula (which I probably
+couldn't create anyway). The specific parameters that are needed for
+each drawing function are listed toward the end of the script, and
+in the FLTK documentation.

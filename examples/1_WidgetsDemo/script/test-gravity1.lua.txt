@@ -1,0 +1,12 @@
+
+A basic test in interaction of widgets with mouse movement.
+
+A number of boxes are placed at random locations on the
+window, and a timer runs a loop. The loop checks for the location
+of the mouse -- Fl:event_x() and Fl:event_y() -- and the location
+of each box, and simply repositions the box closer to the mouse.
+
+This results in the eventual converging of all boxes into a
+single location, so then it gets boring.
+
+The "fltk._FL_OVAL_BOX" check was done to support murgaLua 0.5.5

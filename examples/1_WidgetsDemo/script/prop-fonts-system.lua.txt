@@ -1,0 +1,47 @@
+
+This widget uses Fl:set_fonts() to add all fonts from your system
+to the font table and creates a button for each font.
+
+Setting fonts in murgaLua according to what fonts you have on
+your system is probably not a good idea for applications that
+will be distributed to others, but it can be useful for your
+own personal purposes.
+
+The string returned by Fl:get_font(), which here is used
+as the label for each button, can be used at any time with
+Fl:set_font(Fl_Font_Name,"my_string"), without the need
+to load all fonts, assuming you already know what string
+you need for a font (you can use this script to do that).
+
+The Fl_Scroll + Fl_Pack method of creating a scrolling set
+of widgets allows you to add an arbitrary number of widgets
+with arbitrary dimensions, without being concerned about
+widget placement within the scroll. The widgets will all
+be placed neatly one after the other.
+The lines commented with "--**" would be used if Fl_Pack
+was not used. Note that in the commented lines the buttons
+are each placed at specific coordinates, but with Fl_Pack
+they are all placed at 0,0
+
+Linux users:
+Using a non-Xft version of MurgaLua may initially display
+your fonts poorly, since many bitmap fonts do not have a
+14-pixel size (the default FLTK font size). The slider is
+provided to adjust the font to a useable size.
+Also, X provides the xlsfonts and xfontsel commands, which
+will give you more precise font strings that can be used
+in place of the limited strings provided by Fl:get_font().
+
+For example,
+Fl:set_font(13,"-schumacher-clean-medium-r-normal--12-120-75-75-c-60-iso8859-1")
+or even
+Fl:set_font(fltk.FL_SCREEN,"-*-clean-medium-r-normal--12-*")
+will give you much better result than
+Fl:set_font(13,"-*-clean-medium-r-normal--*")
+because FLTK will use the proper 12px font rather than 14,
+which is not available in schumacher-clean.
+
+Alternatively, you could create 14px aliases for fonts that
+do not have a 14px size, but it's probably easier just to
+specify the size in murgaLua.
+

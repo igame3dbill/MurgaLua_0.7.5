@@ -1,0 +1,6 @@
+
+Murgalua Editions
+
++	Core	-	For serverside operation -	Everything except GUI and audio
++	Lite	-	For light GUIs			 -	No SQL, No ANN, no Audio, etc
++	Full	-	Everything				 -	All ?

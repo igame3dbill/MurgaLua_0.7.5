@@ -1,0 +1,30 @@
+
+The Fl_File_Browser class provides very little mouse/keyboard interaction
+itself other than scrolling the browser display. Any interaction such as
+selection or changing directories must be done through programming.
+
+This widget example was provided only because it's available.
+The fl_file_chooser and fl_dir_chooser functions are MUCH easier to use.
+I recommend using those functions unless you absolutely must have
+the chooser as part of the main window and enjoy punishing yourself.
+
+For Fl_File_Browser and the functions that use it, filetype icons can be
+loaded with Fl_File_Icon:load_system_icons()
+After that (or instead of), you can specify icons for particular
+file types and/or filename extensions:
+
+Fl_File_Icon:load_system_icons()
+lua_icon=fltk:Fl_File_Icon("*.lua",1) -- pattern, type (0=any, 1=file/directory)
+lua_icon:load(demo_images.."greenguy.xpm")
+
+In the case of this demo, these commands are run from the main script
+so that the icon will show in the fl_file_browser example. This feature
+is not exported to the editor window.
+
+If you don't load system icons you can still specify individual icons,
+but anything that hasn't been specified will be shown with a blank space.
+Using "*" for a pattern will apply to everything. It might be useful as
+a starting point if you plan to set your own icons for everything.
+
+I was unable to discover how to use a mouse for browser selection.
+

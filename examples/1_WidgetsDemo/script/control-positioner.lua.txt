@@ -1,0 +1,10 @@
+
+This widget provides an X-Y intersection that follows a click or drag.
+
+The FLTK documentation says:
+"It would be useful if this could be put atop another widget so that the
+crosshairs are on top, but this is not implemented."
+
+I suppose it could be used to control the position of an object that is
+in a different widget, but at this time I'm having a hard time visualizing
+exactly what that use would be.

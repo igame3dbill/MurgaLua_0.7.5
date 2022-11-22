@@ -1,0 +1,21 @@
+
+Display LCD-style digit
+
+This test uses fl_polygon() to draw an LCD digit, using 3 horizontal
+and 4 vertical bars. The bar coordinates and dimensions are set in an
+array that tells the drawing function how to construct the polygons.
+That table is built in a way that allows the display to scale depending
+on the value you use for the digit width (dw), and changing the bar
+thickness (bw) will work fine as long as you don't go much more than
+30% of the digit width. After that it starts to look trippy.
+The slider provides a way to see this quickly.
+
+The callback of the number buttons runs through one of 10 tables.
+The tables contain an array of 7 numbers, each associated with
+one of the 7 bars that make up a digit. If the value of the
+current index is 0, the bar is drawn light gray.
+Otherwise it is drawn black.
+
+
+NOTE: There is a bug that causes the button labels to display garbage,
+but at this time I don't know the source of this problem.

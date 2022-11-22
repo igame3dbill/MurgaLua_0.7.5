@@ -1,0 +1,290 @@
+<HTML>
+  <BODY>
+    <HR break>
+    <H2><A name="Fl_ToggleTree">class Fl_ToggleTree</A></H2>
+    <HR>
+    <H3>Class Hierarchy</H3>
+    <UL>
+<PRE>
+<A href="Fl_Tree.html#Fl_Tree">Fl_Tree</A>
+   |
+   +----<B>Fl_ToggleTree</B>
+</PRE>
+    </UL>
+    <H3>Include Files</H3>
+    <UL>
+<PRE>
+#include &lt;FL/Fl_ToggleTree.H&gt;
+</PRE>
+    </UL>
+
+
+    <H3>Description</H3>
+    Fl_ToggleTree is a tree widget that allows branch visibility to be
+    toggled on and off, similar to a collapsible list widget that is found
+    in most widget tool kits.
+
+
+    <P>
+    <H3>Methods</H3>
+    <CENTER>
+      <TABLE width="90%">
+	<TR><TD align=left valign=top>
+	    <LI><A href="#Fl_ToggleTree.Fl_ToggleTree">Fl_ToggleTree</A></LI>
+	    <LI><A href="#Fl_ToggleTree.add_next">add_next</A></LI>
+	    <LI><A href="#Fl_ToggleTree.add_sub">add_sub</A></LI>
+	    <LI><A href="#Fl_ToggleTree.close">close</A></LI>
+	    <LI><A href="#Fl_ToggleTree.closed_pixmap">closed_pixmap</A></LI>
+	    <LI><A href="#Fl_ToggleTree.column_char">column_char</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_ToggleTree.column_widths">column_widths</A></LI>
+	    <LI><A href="#Fl_ToggleTree.current">current</A></LI>
+	    <LI><A href="#Fl_ToggleTree.end_edit">end_edit</A></LI>
+	    <LI><A href="#Fl_ToggleTree.find">find</A></LI>
+	    <LI><A href="#Fl_ToggleTree.handle">handle</A></LI>
+	    <LI><A href="#Fl_ToggleTree.indent_toggles">indent_toggles</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_ToggleTree.label_offset">label_offset</A></LI>
+	    <LI><A href="#Fl_ToggleTree.open">open</A></LI>
+	    <LI><A href="#Fl_ToggleTree.opened_pixmap">opened_pixmap</A></LI>
+	    <LI><A href="#Fl_ToggleTree.pixmap_offset">pixmap_offset</A></LI>
+	    <LI><A href="#Fl_ToggleTree.remove">remove</A></LI>
+	    <LI><A href="#Fl_ToggleTree.selected">selected</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_ToggleTree.selection">selection</A></LI>
+	    <LI><A href="#Fl_ToggleTree.select_range">select_range</A></LI>
+	    <LI><A href="#Fl_ToggleTree.state">state</A></LI>
+	    <LI><A href="#Fl_ToggleTree.textfont">textfont</A></LI>
+	    <LI><A href="#Fl_ToggleTree.textsize">textsize</A></LI>
+	    <LI><A href="#Fl_ToggleTree.textcolor">textcolor</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_ToggleTree.color">color</A></LI>
+	    <LI><A href="#Fl_ToggleTree.alternate_color">alternate_color</A></LI>
+	    <LI><A href="#Fl_ToggleTree.trim_color">trim_color</A></LI>
+	    <LI><A href="#Fl_ToggleTree.selection_color">selection_color</A></LI>
+	    <LI><A href="#Fl_ToggleTree.selection_label_color">selection_label_color</A></LI>
+	  </TD><TD align=left valign=top>
+	    <LI><A href="#Fl_ToggleTree.draw_lines">draw_lines</A></LI>
+	    <LI><A href="#Fl_ToggleTree.traverse_start">traverse_start</A></LI>
+	    <LI><A href="#Fl_ToggleTree.traverse_forward">traverse_forward</A></LI>
+	    <LI><A href="#Fl_ToggleTree.traverse_up">traverse_up</A></LI>
+	    <LI><A href="#Fl_ToggleTree.unselect">unselect</A></LI>
+	  </TD>
+	</TR>
+      </TABLE>
+    </CENTER>
+
+
+    <H4><A name="Fl_ToggleTree.Fl_ToggleTree">Fl_ToggleTree::Fl_ToggleTree(int x, int y, int w, int h)</A></H4>
+    The constructor makes an empty Fl_ToggleTree.
+
+
+    <H4><A name="Fl_ToggleTree.add_next">void Fl_ToggleTree::add_next(Fl_Node *n)<BR>
+	Fl_ToggleNode * Fl_ToggleTree::add_next(char* label=0, int can_open=1, Fl_Pixmap* pixmap=0, void * d=0)</A></H4>
+    <P>The first form inserts n as the next item after the current node.  If 
+      the tree is empty, then n becomes the first node of the toggle tree.
+    <P>The second form is equivalent to <TT>add_next(new Fl_ToggleNode(label, 
+	can_open, pixmap, d))</TT>.
+
+
+    <H4><A name="Fl_ToggleTree.add_sub">void Fl_ToggleTree::add_sub(Fl_Node *n)<BR>
+	Fl_ToggleNode * Fl_ToggleTree::add_sub(char* label=0, int can_open=1, Fl_Pixmap* pixmap=0, void * d=0)</A></H4>
+    <P>The first form inserts n as the next sub item after the current node.  
+      If the tree is empty, then n becomes the first node of the toggle tree.
+    <P>The second form is equivalent to <TT>add_sub(new Fl_ToggleNode(label, 
+	can_open, pixmap, d))</TT>.
+
+    <H4><A name="Fl_ToggleTree.close">void Fl_ToggleTree::close(Fl_Node *n)</A></H4>
+    <P>Close node n.  This hides any sub items belonging to n.
+
+
+    <H4><A name="Fl_ToggleTree.closed_pixmap">Fl_Pixmap * Fl_ToggleTree::close_pixmap()<BR>
+	void Fl_ToggleTree::close_pixmap(Fl_Pixmap *p)</A></H4>
+    Get or set the pixmap that is drawn when a node is "closed".
+
+
+    <H4><A name="Fl_ToggleTree.column_char">char Fl_ToggleTree::column_char()<BR>
+	void Fl_ToggleTree::column_char(char d)</A></H4>
+    <P>The first form gets the current column separator character. By default 
+      this is '\t' (tab). 
+    <P>The second form sets the column separator to c. This will only have an 
+      effect if you also set column_widths(). 
+
+
+    <H4><A name="Fl_ToggleTree.column_widths">const int * Fl_ToggleTree::column_widths()<BR>
+	void Fl_ToggleTree::column_widths(const int* l)</A></H4>
+    <P>The first form gets the current column width array. This array is 
+      zero-terminated and specifies the widths in pixels of each column. 
+      The text is split at each column_char() and each part is formatted 
+      into it's own column. After the last column any remaining text is 
+      formatted into the space between the last column and the right edge 
+      of the Fl_ToggleTree wdiget, even if the text contains instances of 
+      column_char() . The default value is a one-element array of just a
+      zero, which makes there are no columns. 
+    <P>The second form sets the current array to w. Make sure the last 
+      entry is zero. 
+
+    <H4><A name="Fl_ToggleTree.current">Fl_ToggleNode * Fl_ToggleTree::current()</H4>
+    <P>Returns the current node (as set with the traversal functions).
+
+
+    <H4><A name="Fl_ToggleTree.edit_callback">void Fl_ToggleTree::edit_callback(Fl_Callback* c, void* p)<br>
+	void Fl_ToggleTree::edit_callback(Fl_Callback* c)
+	void Fl_ToggleTree::edit_callback(Fl_Callback0* c)
+	void Fl_ToggleTree::edit_callback(Fl_Callback1* c, void* p)</a></H4>
+    <P>Set the edit callback.  A user defined callback should be sure to call <TT>end_edit()</TT>.
+
+
+    <H4><A name="Fl_ToggleTree.end_edit">void Fl_ToggleTree::end_edit()</H4>
+    <P>Stop editing the current node.
+
+    
+    <H4><A name="Fl_ToggleTree.find">Fl_ToggleNode * Fl_ToggleTree::find(void *d)<BR>
+	Fl_ToggleNode * Fl_ToggleTree::find(char *c)</A></H4>
+    <P>The first form finds the first node in the tree that matches the string c.
+      If no node matches c, then find returns 0.
+    <P>The second form finds the first node in the tree whose data pointer 
+      is equal to the pointer d.  If no node matches d, then find returns 0.
+
+    
+    <H4><A name="Fl_ToggleTree.handle">void Fl_ToggleTree::handle()</A></H4>
+    <P>To change how Fl_ToggleTree <a href="subclassing.html">handles</a> 
+      events passed to it, you can subclass Fl_ToggleTree and override the 
+      handle function.
+
+    
+    <H4><A name="Fl_ToggleTree.indent_toggles">void Fl_ToggleTree::indent_toggles(int b)<BR>
+	int Fl_ToggleTree::indent_toggles()</A></H4>
+    <P>Gets or sets if toggled items are indented or not.
+
+    <H4><A name="Fl_ToggleTree.draw_lines">void Fl_ToggleTree::draw_lines(int b)<BR>
+	int Fl_ToggleTree::draw_lines()</A></H4>
+    <P>Gets or sets if lines are drawn between toggle nodes.
+
+
+    <H4><A name="Fl_ToggleTree.label_offset">void Fl_ToggleTree::label_offset(int x)</A></H4>
+    <P>Set the horizontal label offset to x pixels.
+
+    
+    <H4><A name="Fl_ToggleTree.open">void Fl_ToggleTree::open(Fl_Node *n)</A></H4>
+    <P>Open node n.  This reveals any sub items belonging to n.
+
+    
+    <H4><A name="Fl_ToggleTree.opened_pixmap">Fl_Pixmap * Fl_ToggleTree::opened_pixmap()<BR>
+	void Fl_ToggleTree::opened_pixmap(Fl_Pixmap *p)</A></H4>
+    <P>Get or set the pixmap displayed when a node is "open".
+    
+
+    <H4><A name="Fl_ToggleTree.pixmap_offset">void Fl_ToggleTree::pixmap_offset(int x)</A></H4>
+    <P>Set the horizontal pixmap offset to x pixels.
+    
+
+    <H4><A name="Fl_ToggleTree.remove">int Fl_ToggleTree::remove(Fl_ToggleNode *n)<BR>
+	int Fl_ToggleTree::remove(void *d)<BR>
+	int Fl_ToggleTree::remove(char *c)</A></H4>
+    <P>The first form removes n (and all of it's sub nodes) from the tree.  
+      If successful remove returns 1, otherwise it returns 0.
+    <P>The second form performs a <TT>find()</TT> with d as it's argument
+      and <TT>remove()</TT>s the returned node if it exists.
+    <P>The third form performs a <TT>find()</TT> with the string c as it's 
+      argument and <TT>remove()</TT>s the returned node if it exists.
+
+
+    <H4><A name="Fl_ToggleTree.selected">Fl_ToggleNode * Fl_ToggleTree::selected()</A></H4>
+    <P>Return the selected node.  If multiple nodes are selected, then 
+      <TT>selected()</TT> returns 0, and <TT>selection()</TT> should be 
+      checked.  Note that the <TT>current()</TT> node is <b>not</b> 
+      necessarily equal to the <TT>selected()</TT> node.  Fl_ToggleTree
+      attempts to maintain the selected item even while the tree is
+      being modified.  Of course, if the node is unselected or deleted by
+      some operation, <TT>selected()</TT> will return 0.
+
+    
+    <H4><A name="Fl_ToggleTree.selection">Fl_ToggleNode * Fl_ToggleTree::selection()<BR>
+	Fl_ToggleNode * Fl_ToggleTree::selection(int i)</A></H4>
+    <P>The first form traverses forward and returns the next selected node.
+    <p>The second form returns the i-th selected node.
+
+    <H4><A name="Fl_ToggleTree.select_range">void Fl_ToggleTree::select_range(Fl_ToggleNode* start, Fl_ToggleNode* end, int add=0)</A></H4>
+    <P>Sets nodes between start and end as selected.  add..
+
+
+    <H4><A name="Fl_ToggleTree.state">Fl_ToggleNode * Fl_ToggleTree::state()</A></H4>
+    <P>Returns the state of the Fl_ToggleTree widget.  Enumerated states include:   FL_TOGGLE_NONE = 0,
+      FL_TOGGLE_SELECT = 1,  FL_TOGGLE_RESELECT = 2,  FL_TOGGLE_SELECT_MASK = 3, FL_TOGGLE_OPENED = 4,
+      FL_TOGGLE_CLOSED = 8,  FL_TOGGLE_HIT = 16,
+
+    
+    <H4><A name="Fl_ToggleTree.textfont">Fl_Font Fl_ToggleTree::textfont()<BR>
+	void Fl_ToggleTree::textfont(Fl_Font d)</A></H4>
+    <P>The first form gets the default text font for the lines in the browser.
+    <P>The second form sets the default text font to font
+
+    
+    <H4><A name="Fl_ToggleTree.textsize">uchar Fl_ToggleTree::textsize()<BR>
+	void Fl_ToggleTree::textsize(uchar d)</A></H4>
+    <P>The first form gets the default text size for the lines in the browser.
+    <P>The second form sets the default text size to size.
+    
+
+    <H4><A name="Fl_ToggleTree.textcolor">uchar Fl_ToggleTree::textcolor()<BR>
+	void Fl_ToggleTree::textcolor(uchar d)</A></H4>
+    <P>The first form gets the default text color for the lines in the browser. 
+    <P>The second form sets the default text color to color
+
+    <H4><A name="Fl_ToggleTree.color">uchar Fl_ToggleTree::color()<BR>
+	void Fl_ToggleTree::color(uchar d)</A></H4>
+    <P>The first form gets the default background color for the lines in the browser. 
+    <P>The second form sets the default background color to color 
+
+    <H4><A name="Fl_ToggleTree.alternate_color">uchar Fl_ToggleTree::alternate_color()<BR>
+	void Fl_ToggleTree::alternate_color(uchar d)</A></H4>
+    <P>The first form gets the alternating background color for the lines in the browser. 
+    <P>The second form sets the alternating background color to color 
+
+    <H4><A name="Fl_ToggleTree.trim_color">uchar Fl_ToggleTree::trim_color()<BR>
+	void Fl_ToggleTree::trim_color(uchar d)</A></H4>
+    <P>The first form gets the trim color that seperates lines of text in the browser.
+    <P>The second form sets the trim color.
+
+    <H4><A name="Fl_ToggleTree.selection_color">uchar Fl_ToggleTree::selection_color()<BR>
+	void Fl_ToggleTree::selection_color(uchar d)</A></H4>
+    <P>The first form gets the selection background color for the lines in the browser. 
+    <P>The second form sets the selection background color to color 
+
+    <H4><A name="Fl_ToggleTree.selection_label_color">uchar Fl_ToggleTree::selection_label_color()<BR>
+	void Fl_ToggleTree::selection_label_color(uchar d)</A></H4>
+    <P>The first form gets the selection text color for the lines in the browser. 
+    <P>The second form sets the selection text color to color 
+
+    <H4><A name="Fl_ToggleTree.traverse_start">void Fl_ToggleTree::traverse_start(Fl_Node* t)<BR>
+	Fl_ToggleNode* Fl_ToggleTree::traverse_start()</A></H4>
+    <P>The first form of this method sets the current pointer to t.  The second
+      form of this method, sets the traversal pointer to <TT>first()</TT> and
+      then returns first().  The second form is provided for convenience.
+
+    <H4><A name="Fl_ToggleTree.traverse_forward">Fl_ToggleNode* Fl_ToggleTree::traverse_forward(int visible, int &depth)<BR>
+	Fl_ToggleNode* Fl_ToggleTree::traverse_forward()</A></H4>
+    <P>This method traverses forward through the tree.  Traversal through 
+      the node tree is done by a depth first traversal that updates the 
+      current node pointer.  If traverse_forward returns 0, then the 
+      current node pointer has reached the end of the tree.  Otherwise, 
+      traverse_forward returns the next node in the tree.
+    <P>The visible flag should be set to 1 if you want to restrict 
+      traversal to the visible tree (the Fl_Nodes that are not closed).  The 
+      depth variable is updated with the new node depth, if the old node depth 
+      is passed to traverse_forward.
+    <P>The second form of the method is the same as 
+      <TT>traverse_forward(0, temp)</TT>.
+
+
+    <H4><A name="Fl_ToggleTree.traverse_up">Fl_Node* Fl_ToggleTree::traverse_up()</A></H4>
+    <P>If the current node has an up pointer, traverse_up returns this 
+      pointer and sets it as the current node.
+    
+
+    <H4><A name="Fl_ToggleTree.unselect">void Fl_ToggleTree::unselect()</A></H4>
+    <P>Unselects all selected items.
+
+  </BODY>
+</HTML>

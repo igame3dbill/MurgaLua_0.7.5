@@ -1,0 +1,16 @@
+
+fl_file_chooser is a FLTK function which shows a file browser
+window specifically intended for choosing a regular file.
+
+fltk.fl_file_chooser(title,filename_filter,start_path,relative)
+
+"relative" is a toggle. Non-zero means the filename returned will be a
+path relative to your current location, and zero returns absolute path.
+
+Using nil as start path will default to the previously chosen path,
+or current directory if this is the first time the function is called
+
+The filename filter is a string which filters the displayed files.
+For example, "*.txt" would show only files ending with .txt and
+"*.{gif,GIF,jpg,JPG,jpeg,JPEG,png,PNG,bmp,BMP,pict,PICT,p?m,P?M}"
+would cover a number of image filenames.

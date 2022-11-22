@@ -1,0 +1,34 @@
+
+The XPM image format is, in my opinion, ideal for use with
+MurgaLua interfaces. Although the filesize can quickly become
+very silly in large images (such as this example), the use of
+XPM for smaller images (such as icons) will keep a reasonable
+file size. XPM provides transparency below the quality of PNG,
+but the simple fact that the format is easy to read plain text
+allows the developer to quickly modify the images without the
+need for an image editor. Plain text also lets the developer
+embed the image data into a script, which may be preferable
+to having many external files in some cases (see image-xpm3).
+
+The color changing functions in this sample are probably not
+ideal. It was a quick hack made as a demonstration. It uses
+uncache() and Fl_XPM_Image() repeated many times to reset
+the image to its original state. At this time I don't know
+if this process increases memory use with each iteration,
+or if it (hopefully) flushes and then reloads the data.
+
+The inactive() method can be used multiple times on the
+same image data to fade the image more. Four times seems
+to be the limit before it becomes completely invisible.
+
+The count() method returns 1 for typical color images such
+as pngs and bitmaps, but gives more info for pixmaps.
+From pixmaps this method returns the number of data values
+associated with the image, which is essentially the number
+of lines (excluding comments) between { and }
+
+Note: FLTK on Windows may have trouble displaying transparency
+with some XPM files. This seems to be caused by using certain
+non-alphanumeric characters in the file (a dot, perhaps).
+Using an alphanumeric character or a space to represent
+transparent pixels seems to solve this issue.

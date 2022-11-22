@@ -1,0 +1,3 @@
+
+A variant of gravity6 which runs fullscreen and removes
+the initial white box effect.

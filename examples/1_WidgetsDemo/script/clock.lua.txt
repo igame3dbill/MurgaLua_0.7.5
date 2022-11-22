@@ -1,0 +1,15 @@
+
+Demonstration of skinned clock widget
+Original code by Marielle Lange (http://www.widged.com)
+Modified by mikshaw for widgets demo package
+
+Much of the code in this sample was written just to handle
+the addition of an image to the widget. An unskinned clock
+can be created with a single line of code.
+
+The loop was put in place to redraw the widget containing the image.
+This is necesary because the clock hands would otherwise draw on top
+of the image and eventually obscure the clock face. You can see the
+result of this problem by increasing the update interval.
+The loop is now also being used to display a text-based clock.
+

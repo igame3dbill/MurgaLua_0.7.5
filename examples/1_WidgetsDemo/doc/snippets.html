@@ -1,0 +1,173 @@
+<html>
+<head><title>MurgaLua Code snippets</title></head>
+<body>
+
+<pre><font face="helvetica">
+
+<i>-- One-liners and small pieces of code that may be useful in murgaLua
+-- NOTE: user-created strings and variable names used in these examples
+-- are preceded by "my_". For example, the variable "my_browser" is
+-- assumed to be an Fl_Browser named my_browser. The exception is in
+-- functions written by others, where it is shown here without change.</i>
+
+-- Print the FLTK version (floating point format)
+print(Fl:version())
+
+-- Print the Lua version
+print(_VERSION)
+
+-- Print the name of the host operating system
+print(murgaLua.getHostOsName())
+
+-- Print the full filename of the current script
+print(arg[0])
+
+-- Disable the dotted-line focus indicator (only occasionally useful)
+Fl:visible_focus(0)
+
+-- Get screen dimensions
+my_screen_width=Fl:w()
+my_screen_height=Fl:h()
+print("your screen: "..my_screen_width.."x"..my_screen_height)
+
+-- Change the default font
+Fl:set_font(fltk.FL_HELVETICA,"my_font_name")
+
+-- Change the font of all popup messages
+fltk.fl_message_font(font,font_size)
+
+-- Change the default box type
+Fl:set_boxtype(fltk.FL_UP_BOX,fltk.FL_THIN_UP_BOX)
+Fl:set_boxtype(fltk.FL_DOWN_BOX,fltk.FL_THIN_DOWN_BOX)
+
+-- Allow scheme to be set from FLTK_SCHEME environment variable
+-- or optionally, in X11, the fltk.scheme X resource
+Fl:scheme(NULL)
+
+-- Allow colors to be inherited from system
+-- (X11 resources: fltk.background, fltk.foreground, Text.background)
+Fl:get_system_colors()
+
+-- Print a filename extension (does not need to be an existing file)
+print(fltk.fl_filename_ext("my_filename.txt"))
+
+-- Print the file type of a given file
+print(lfs.attributes("my_filename").mode)
+
+-- Generate a pseudo-random number between 1 and 10
+-- Thanks to Bill for helping me with this
+math.randomseed(os.time()) -- os.time() is an arbitrary function used to supply a seed number
+math.random(1,10)
+
+-- Print the class name (Fl_*) of a given widget
+print(my_widget.bind_lua_typeinfo.name)
+
+-- Print the key/value pairs of a table
+for k,v in pairs(my_table) do print(k,v) end
+
+-- Print the index/value pairs of a numerical indexed table
+for k,v in pairs(my_table) do print(k,v) end
+for i,v in ipairs(my_table) do print(i,v) end
+for i=1,table.getn(my_table) do print(i,my_table[i]) end -- not as reliable
+
+-- perform tasks depending on whether or not X is running (Linux and OSX)
+if os.getenv("DISPLAY") then
+  graphical commands
+else   
+  console commands
+end
+
+-- Grab command output
+my_cmd=io.popen("my_command") -- runs command
+my_result=my_cmd:read("*a") -- read output of command to a variable
+print(my_result)
+my_cmd:close()
+
+-- Display command output in Fl_Browser()
+for my_line in io.popen("my_command"):lines() do my_browser:add(my_line) end
+-- or...
+my_cmd=io.popen("my_command")
+for my_line in my_cmd:lines() do my_browser:add(my_line) end
+my_cmd:close()
+
+-- Write to a file
+my_filename=io.open("my_file.txt","w")
+if my_filename then -- always check for write permission
+  my_filename:write("some text")
+  my_filename:close()
+end
+
+-- Perform an action on an arbitrary series of objects
+-- Similar to "for i in one two three; do echo $i; done" in bash.
+-- Seems like there should be a way to do this without creating a table, but i dunno
+for i,v in ipairs({"string", os, os.time}) do print(type(v)) end
+
+-- Set up an exit confirmation
+-- Assumes the main window (named "my_window" here) does not have another function
+function my_exit()
+  my_confirm=fltk.fl_choice("sure you want to quit?","no","yes",NULL)
+  if my_confirm == 1 then os.exit(0) end
+end
+my_window:callback(my_exit)
+
+-- Various ways to test for a particular minimum murgaLua version
+-- from Jeurgen on murgaLua forum (slightly modified for readability)
+function minimal_version(target_version)
+  local version,min_vers=0,0
+  for x in string.gmatch(murgaLua and murgaLua.version or "0","%d+") do
+    version=version*100+tonumber(x)
+  end
+  for x in string.gmatch(target_version,"%d+") do
+    min_vers=min_vers*100+tonumber(x)
+  end
+  if version&lt;min_vers then
+    print("You must use a murgaLua version &gt; "..target_version)
+    os.exit(1)
+  end
+end
+minimal_version("0.5.5")
+
+function minimal_version(min_version)
+  local x=string.gmatch((murgaLua and murgaLua.version or "0").." " .. min_version,"%d+")
+  local t=function(x) return tonumber(x()) end
+  if t(x)*10000+t(x)*100+t(x)-t(x)*10000-t(x)*100-t(x)&lt;0 then
+    print("You must use a murgaLua version &gt; "..min_version) os.exit(1) end
+end
+minimal_version("0.5.6")
+
+function minimal_version(minimal_version)
+  local x=string.gmatch((murgaLua and murgaLua.version or "0"),"%d+") y=string.gmatch(minimal_version,"%d+")
+  local t=function(x) return tonumber((x() or 0)) end
+  local version=0; local min_version=0
+  for i=1,3 do version=version*100+t(x); min_version=min_version*100+t(y) end
+  if version&lt;min_version then
+    print("You must use a murgaLua version &gt; "..minimal_version) os.exit(1) end
+end
+minimal_version("0.6")
+
+-- Get boot parameter on Unix-like systems with /proc/cmdline
+-- For parameter "A=B", target is "A=", result is "B".
+-- written by Robert Shingledecker for Damn Small Linux
+function getbootparam(target)
+  filename = "/proc/cmdline"
+  io.input(filename) -- set stdin
+  cmdline = io.read() -- read stdin
+  local x,y=string.find(cmdline,target) -- find start and end of target in /proc/cmdline contents
+  if x ~= nil then
+     result = string.sub(cmdline,y+1) 
+     local i,j=string.find(result,' ')
+     if i ~= nil then
+        result = string.sub(result,1,i-1)
+     end
+     if string.sub(target,-1,-1) ~= "=" then
+        result = target
+     end
+     return result
+  end
+  io.input()
+end
+
+</font>
+</pre>
+</body>
+</html>

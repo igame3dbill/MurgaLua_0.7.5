@@ -1,0 +1,8 @@
+\todo 
+
+- add method fadeSound(time) or even more flexible for fadeIn /fadeOut -> soundModulateVolume(factor, time)
+- test alternative callback that is structured by sample, instead of by frame
+- divide DeviceAudioSdl into basic and advanced
+- move most mixer functionality into base class
+
+- create high-level spatial audio methods

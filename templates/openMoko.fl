@@ -1,0 +1,28 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0109 
+header_name {openMoko.h} 
+code_name {openMoko.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window mainWindow {
+    label {OpenMoko Template Window} open selected
+    xywh {558 198 480 600} type Double hide
+  } {
+    Fl_Button upperLeftButton {
+      label TEST
+      xywh {0 0 40 40}
+    }
+    Fl_Button upperRightButton {
+      label TEST
+      xywh {440 0 40 40}
+    }
+    Fl_Button lowerLeftButton {
+      label TEST
+      xywh {0 560 40 40}
+    }
+    Fl_Button lowerRightButton {
+      label TEST
+      xywh {440 560 40 40}
+    }
+  }
+} 

@@ -1,0 +1,159 @@
+World of Goo est un jeu vidéo de réflexion sorti en octobre 2008 pour Windows, Mac OS X, Linux et WiiWare. Une version pour iPhone et iPod touch est en préparation[1].
+
+Créé par 2D Boy, un petit studio de développement indépendant composé de Kyle Gabler et Ron Carmel, deux anciens employés d'Electronic Arts, le jeu consiste à construire des structures avec de petites créatures rondes — les Goos[2] — afin de les amener à un tuyau de sortie. Plusieurs types de Goos différents permettent d'enrichir la jouabilité au fur et à mesure de la progression.
+
+Le jeu a reçu un très bon accueil de la presse, ainsi que plusieurs récompenses.
+Sommaire
+
+    * 1 Système de jeu
+          o 1.1 Principe
+          o 1.2 Autres modes de jeu
+          o 1.3 Les différentes espèces de Goo
+    * 2 Développement
+    * 3 Scénario
+          o 3.1 Trame
+          o 3.2 World of Goo Corporation
+          o 3.3 Résumé détaillé
+                + 3.3.1 Premier chapitre
+                + 3.3.2 Second chapitre
+                + 3.3.3 Troisième chapitre
+                + 3.3.4 Quatrième chapitre
+                + 3.3.5 Cinquième chapitre
+                + 3.3.6 À propos du sixième chapitre
+    * 4 Musique
+          o 4.1 Téléchargement
+          o 4.2 Liste des titres
+    * 5 Sortie
+          o 5.1 Disponibilité
+          o 5.2 Notes et critiques
+          o 5.3 Ventes
+    * 6 Communauté
+    * 7 Notes et références
+    * 8 Voir aussi
+          o 8.1 Articles connexes
+          o 8.2 Liens externes
+
+[modifier] Système de jeu
+[modifier] Principe
+Placement d'un Goo pour construire une structure
+
+L'objectif de base consiste à amener de petites boules colorées, les Goos, à l'embouchure d'un tuyau. Pour cela, le joueur doit édifier une structure y conduisant. Le joueur déplace les Goos avec la souris ou la Wiimote par un système de glisser-déposer. Quand le joueur « lâche » un Goo près de deux autres Goos déjà reliés entre eux, il se forme deux nouvelles liaisons, et la plate-forme ainsi créée fait alors partie intégrante de la structure. Les Goos inutilisés se déplacent sur la structure.
+
+La difficulté du jeu vient d'un important modèle de simulation des forces qui s'exercent sur la structure. Par exemple, si la structure est haute, elle a tendance à vaciller. De même, si le joueur ajoute des Goos sur un côté, la structure penche de ce côté sous l'effet du poids des Goos. Si rien n'est fait pour rétablir l'équilibre, plusieurs issues sont possibles : soit la structure revient toute seule en position d'équilibre si l'ensemble de la construction est suffisamment homogène, mais il risque d'y avoir un balancement important, voire un basculement de la structure ; soit, lorsque trop de forces sont concentrées sur une liaison, celle-ci peut se casser, entraînant d'importants changements dans la forme de la structure.
+
+Au fur et à mesure de la progression, le joueur découvre plusieurs espèces possédant des caractéristiques différentes, que l'on distingue par leur couleur. Celles-ci possèdent des propriétés particulières qui permettent de diversifier et d'enrichir le concept initial (voir infra). Sont entre autres rencontrés : les Goos rouges qui se consument au contact du feu qu'ils transmettent à leurs voisins, ou encore les Goos verts qui peuvent être réutilisés librement. Certains éléments du décor peuvent détruire les Goos, notamment les rouages en mouvements et les pics.
+[modifier] Autres modes de jeu
+
+Chaque niveau dispose d'un OCD (sigle de Obsessive Completion Distinction Criteria, en français « Critères de distinction pour réalisation obsessionnelle »). Il s'agit d'un objectif supplémentaire à atteindre pour chaque niveau. Il peut s'agir d'un nombre maximum de mouvements, d'un certain nombre de Goos à récupérer, ou d'un temps limité. Les niveaux dont l'OCD a été remporté sont alors marqués d'un drapeau. Ces objectifs permettent de rallonger la durée de vie du jeu.
+
+Un jeu en parallèle, World of Goo Corporation, est disponible assez rapidement dans l'aventure. Il consiste à utiliser les Goos récupérés dans les niveaux pour construire la plus haute tour possible. Une connexion internet permet de comparer la taille de sa tour avec celle des autres joueurs (depuis juin 2010 le record est de 51,92 mètres[3]). Le site officiel donne la liste des meilleurs scores et des meilleurs temps pour chaque niveau.
+
+La version Wii propose un mode coopératif, où quatre personnes peuvent manipuler en même temps les Goos. Bien que non-officiellement supporté, le jeu à plusieurs souris est aussi possible avec la version Linux[4].
+[modifier] Les différentes espèces de Goo
+
+Au cours de sa progression, le joueur rencontre différentes espèces de boules de Goo, chacune présentant des propriétés particulières :
+
+    * les plus communes (rencontrées dès le premier niveau) sont noires et ne permettent que deux liaisons à la fois et ne peuvent pas être détachées après avoir été posées. Les pixels des niveaux « virtuels » du troisième chapitre sont similaires ;
+    * les albinos (à partir du niveau Pendule) sont blanches, permettent plus de liaisons et ne peuvent pas être détachées après avoir été posées ;
+    * les lierres (dès le niveau Tours de lierre) sont vertes, peuvent être détachées après avoir été utilisées et permettent également plusieurs liaisons ;
+    * les boules d'eau (dès le niveau Bave) ne permettent la création que d'une liaison à la fois et ne peuvent pas être détachées après avoir été posées ;
+    * les beauty (dès le niveau École de beauté) sont roses, plus grosses et ne peuvent pas interagir directement avec le joueur. Une fois passées dans une machinerie appropriée, elles sont fragmentées en nombreuses petites boules. Les ugly, similaires mais jaunâtres, se comportent de la même manière ;
+    * les pokey (dès le niveau La troisième roue), sont jaunes, détachables, et se fixent à tous les objets touchés ;
+    * les fuse (dès le niveau Homme de feu) ont l'apparence d'une allumette, sont inflammables et ne peuvent pas être détachées après avoir été posées ;
+    * les bit (dès le niveau Hello, World) sont vertes et apparaissent uniquement dans les niveaux « virtuels » du troisième chapitre. Au contraire de toutes les autres, elles ne peuvent pas créer de structures, ni être déplacés, mais elles peuvent être lancées ;
+    * les pilot (dès le niveau Virus Vigne) sont rouges et se comportent de manière similaire aux bits. Cependant, elles se transforment en liaison en passant à proximité d'une structure ;
+    * le produit Goo, qui ne peut pas interagir directement avec l'utilisateur.
+
+D'autres éléments de natures différentes interagissent également avec le joueur :
+
+    * les bombes collantes (à partir du niveau Tu dois pulvériser la tête) se comportent comme des pokey mais explosent au contact du feu ;
+    * les ballons (dès le niveau Machine volante) s'élèvent dans les airs et peuvent être attachés à une structure de Goo. Les poissons volants et les yeux géants agissent de la même façon ;
+    * les blocs de pierre (dès le niveau Blocs de route) ;
+    * les crânes (dès le niveau La longue route osseuse de Misty) sont détachables et invulnérables.
+
+[modifier] Développement
+Ron Carmel et Kyle Gabler, fondateurs de 2D Boy et créateurs de World of Goo
+
+Le concept de base prend ses racines dans un jeu expérimental réalisé en quatre jours par Kyle Gabler, intitulé Tower of Goo, consistant uniquement à la construction d'une tour de 25 mètres[A 1].
+
+Le développement du projet est amorcé en août 2006, par Ron Carmel et Kyle Gabler[A 2]. Ils créent le studio indépendant 2D Boy en février 2007 à San Francisco[5]. Le jeu est développé par le duo. Tous deux travaillent dans le jeu vidéo depuis longtemps. Ron Carmel a précédemment été développeur sur un logiciel d'effet visuel et sur des simulations basés sur l'haptique et a travaillé pour le site Pogo.com avant d'engager la production du jeu où il s'occupe de la programmation[5]. Kyle Gabler est à l'origine du concept, des graphismes, du scénario et de la musique. Il avait déjà travaillé chez Electronic Arts comme game designer[5],[A 1].
+
+Initialement prévu pour l'été 2007 sur Microsoft Windows, 2D Boy change ses plans et décide de porter son jeu sur Wii, Mac et Linux[A 1] et le jeu ne sort qu'en octobre 2008[6]. En novembre 2007, 2D Boy fait appel au programmeur Allan Blomquist pour développer notamment la version Wii et Mac OS X : ce sera l'un des seuls employés[A 1], avec Maks Verver, développeur de la version GNU/Linux.
+
+Les développeurs utilisent de nombreuses technologies libres comme Simple DirectMedia Layer, Open Dynamics Engine pour les simulations physiques, et TinyXML pour la configuration, les niveaux et l'animation[A 1]. Les logiciels Subversion et Mantis Bug Tracker ont également servi pendant le développement[A 1], ainsi que cURL et AES.
+[modifier] Scénario
+
+Le scénario est divisé en cinq chapitres, répartis sur plusieurs îles autour de la planète ; le mode World of Goo Corporation évolue en parallèle du scénario. Chacun possède ses propres thèmes graphiques et musicaux, ainsi que de nouvelles espèces de Goos.
+[modifier] Trame
+
+    Ce qui suit dévoile des moments clés de l’intrigue.
+
+Dans le premier chapitre, le joueur découvre les Goos et fait connaissance avec le mystérieux peintre des pancartes.
+
+Au deuxième chapitre, le joueur doit rétablir le courant jadis généré par une source inconnue. De nouvelles boules font leur apparition.
+
+Le troisième chapitre se déroule dans une sombre usine, filiale de World of Goo Corporation où l'on y fabrique le « Produit Z ». Celui-ci s'avérera être la dévastatrice troisième dimension, le joueur se retrouvant alors incompatible avec le monde.
+
+Dans le quatrième chapitre, le joueur fait la rencontre de MAMAN — qui se révèlera être un immense spambot — qui aidera le joueur à détruire World of Goo Corporation et le produit Z.
+
+Enfin, l'épilogue ne contient que des Goos basiques, permet de découvrir une gigantesque lunette astronomique et de se rapprocher du peintre des pancartes.
+[modifier] World of Goo Corporation
+
+    Ce qui suit dévoile des moments clés de l’intrigue.
+
+World of Goo Corporation est une énorme multinationale sans scrupules, qui détient le monopole mondial sur l'exploitation du Goo. Le scénario l'utilise essentiellement pour critiquer le pouvoir des grosses entreprises : par exemple, la compagnie va jusqu'à rendre des gens « incompatibles » avec le monde pour leur profit. Ses débuts seraient racontés dans l'éventuel sixième chapitre.
+
+Les tuyaux dans lesquels le joueur doit mener les Goos les envoient directement dans l'entreprise où ils servent à la fabrication des produits de l'entreprise (boisson, crème de beauté). Dans les chapitres 3 et 4, la World of Goo Corporation prend une place encore plus importante.
+
+Le joueur récolte les Goos aux quatre coins du monde pour le compte de l'entreprise, si bien que l'espèce se retrouve éteinte au final. Cette problématique peut rappeler les compagnies pétrolières et le problème de l'épuisement des ressources naturelles.
+
+Une fois que le joueur a terminé le troisième niveau du premier chapitre, la société ouvre un lieu expérimental, également appelé World of Goo Corporation, où l'objectif est de construire la plus haute tour possible en utilisant les boules de Goo supplémentaires recueillies dans le jeu. C'est un des six mondes accessibles depuis la planète présente dans le menu principal du jeu, avec les cinq chapitres. Il reprend le concept de Tower of Goo, un jeu créé pour l'Experimental Gameplay Project — un projet dont le but est d'expérimenter de nouvelles formes de gameplay — par Kyle Gabler, avant la création de 2D Boy, qui consistait également à construire la plus haute tour possible.
+
+Pendant le développement du jeu, les créateurs ont mis en ligne un site web fictif de World of Goo Corporation[7].
+[modifier] Résumé détaillé
+
+    Ce qui suit dévoile des moments clés de l’intrigue.
+
+Divers sque l'on accorde à la beauté (tout au long du chapitre Little Miss World of Goo) et le mauvais respect de la vie privée par certaines grosses entreprises sur internet (MAMAN[C 1],[C 2], dont la politique de gestion des informations personnelles n'est pas sans faire penser à ce qui est reproché à Facebook notamment).
+[modifier] Premier chapitre
+
+Dans le premier chapitre, Les collines de Goo (en anglais : The Goo Filled Hills), le joueur découvre les Goos et fait connaissance avec le mystérieux peintre des pancartes qui, tout au long de l'aventure, lui donnera des conseils et des informations dans des messages énigmatiques ou malicieux.
+
+Le scénario n'est pas très développé dans ce chapitre. À la fin du dernier niveau, qui se situe dans un estomac (le Goo étant, en plus d'être un solide matériau de construction, délicieux), le joueur doit accrocher des yeux-ballons géants à une structure de Goos, afin qu'ils s'envolent. Dans le ciel, les boules de Goo peuvent alors voir de nouvelles îles inexplorées, puis se rendre compte, alors qu'elles dérivent de plus en plus haut, qu'elles ne reviendraient jamais...
+[modifier] Second chapitre
+
+Dans le deuxième chapitre, Little Miss World of Goo, le joueur apprend que l'île possède un générateur électrique, mais que sa production a été très insuffisante ces derniers temps. Au cours du chapitre, il découvre notamment la boule de Goo beauty : plus grosse que les autres, elle est aussi plus belle. Au contraire, les ugly doivent êtres éliminés.
+
+Ce chapitre critique la trop grande importance que l'on accorde à la beauté.
+
+Dans le dernier niveau, le joueur découvre que le générateur est une immense statue féminine, désignée « machin féminin géant » (en anglais : giant lady thing) dans la conclusion, et qu'il s'avère que la beauté était un élément chimique liquide fortement réactif, comme l'essence ou la térébenthine (cette observation est teintée d'ironie : la térébenthine est un produit toxique) mais que, avec le temps, la beauté du générateur — ainsi que sa production d'énergie — a commencé à diminuer, jusqu'à ce que la chirurgie esthétique permit d'injecter un produit de beauté (les boules de Goo beauty amenées par le joueur) dans son front.
+[modifier] Troisième chapitre
+
+Le troisième chapitre, Un rouage dans la machine (en anglais : Cog in the Machine), se déroule dans une sombre usine, filiale de World of Goo Corporation. Le joueur commence par entendre parler d'un nouveau produit high-tech qui serait fabriqué dans cette usine, le Produit Z. Dans le dernier niveau, le joueur se retrouve à la cérémonie de lancement du Produit Z, télédiffusée dans le monde entier. Selon World of Goo Corporation, il devrait changer le monde pour toujours...
+
+La cérémonie commence : une immense main armée d'un pistolet sort du bâtiment de l'inauguration. Le public observe la scène, ébahi mais craintif. Un rayon vert est projeté du pistolet jusqu'à l'espace, se modèle en cube, et retombe pour englober toute la planète. Le monde devient en volume.
+
+Un terminal électronique apparaît alors, annonçant que World of Goo est maintenant en 3D mais que le joueur est devenu « incompatible » avec le monde. L'écran l'invite à aller contacter le support technique dans L'autoroute de l'information.
+[modifier] Quatrième chapitre
+
+Le quatrième chapitre, L'autoroute de l'information (en anglais : Information Superhighway), s'avère être un monde virtuel, représentation d'internet. Les décors sont monochromes, vert sur noir, comme sur les anciens écrans d'ordinateurs. Simultanément, World of Goo Corporation change également d'apparence, devenant My Virtual World of Goo Corporation, accompagné d'une musique de style 8-bit. Cependant, au cours du quatrième niveau, le joueur parvient à mettre à jour le pilote graphique de l'autoroute de l'information et le jeu reprend des couleurs normales.
+
+À la fin du chapitre, le joueur fait la rencontre de MAMAN, un programme informatique dont des messages sont déjà parvenus au joueur lors des précédents chapitres du jeu[C 3]. Il peut communiquer avec à l'aide d'une interface prenant la forme d'un moteur de recherche. Cependant, derrière son apparence de programme bienveillant, MAMAN se révèle être en réalité un spambot, peu respectueux de la vie privée (son traitement des informations personnelles s'avère très peu scrupuleux[C 1],[C 2]). Comme rien n'est en réalité jamais vraiment supprimé sur l'autoroute de l'information, le joueur propose à MAMAN renvoyer tout le spam de l'histoire sur les serveurs de World of Goo Corporation ; elle accepte et indique qu'il faut se rendre à la corbeille pour les restaurer.
+
+Le joueur accède alors à la corbeille, matérialisée en un niveau. Une fois restauré, l'immense volume de spam est envoyé vers les locaux de World of Goo Corporation, produisant une énorme attaque par déni de service : l'entreprise explose, le monde retrouve ses deux dimensions, mais une épaisse couche de smog s'installe sur toute la planète.
+[modifier] Cinquième chapitre
+
+Enfin, l'épilogue intitulé Fin du monde (en anglais : End of the World), où prennent place trois niveaux (ainsi que le dernier, qui joue le rôle de conclusion), se situe sur la plus haute île de la planète. À son sommet se trouve un télescope, qui pourrait permettre de découvrir pourquoi les Goos essaient toujours de grimper davantage plus haut. La visibilité est cependant difficile en raison du smog. Le joueur, en attachant plusieurs poissons volants au télescope, parvient à l'élever au-delà de la couche de brouillard. Le joueur peut alors voir une planète peuplée de boules de Goos...
+
+Dans l'épilogue, on apprend également que le peintre des pancartes est devenu l'opérateur du télescope.
+
+Dans les niveaux de l'épilogue se trouvent exclusivement des Goos normaux, comme au tout début du jeu.
+[modifier] À propos du sixième chapitre
+
+Le développement du chapitre 6, qui devait se passer sur la Lune, a été mis de côté[A 4].
+
+Il s'agirait d'un prologue, intitulé Chapitre 0 : La lune[8], qui se déroulerait un an plus tôt tandis que World of Goo Corporation était encore une toute nouvelle startup web 2.0 : l'entreprise aurait décidé de rentabiliser la Lune en y affichant de la publicité. Au final, l'entreprise l'aurait remplacé par une gigantesque boule composée de nombreuses de boules de Goos lumineuses, permettant d'afficher des messages publicitaires, à la manière d'un écran LCD géant[A 5]. Le joueur rencontrerait l'architecte, probablement le futur peintre des pancartes.
+
+    Fin des révélations.
+
+[modifier] 
